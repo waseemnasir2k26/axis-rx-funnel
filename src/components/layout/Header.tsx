@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Sparkles, Zap, Layers } from 'lucide-react';
+import { Menu, X, ChevronDown, Sparkles, Zap, Layers, BookOpen, Moon } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
 const designs = [
   { path: '/v1', name: 'Minimal Luxe', desc: 'Clean & elegant', icon: Sparkles },
   { path: '/v2', name: 'Bold Medical', desc: 'Authoritative', icon: Zap },
   { path: '/v3', name: 'Modern Tech', desc: 'Dynamic & fresh', icon: Layers },
+  { path: '/v4', name: 'Editorial', desc: 'Magazine style', icon: BookOpen },
+  { path: '/v5', name: 'Immersive Dark', desc: 'Cinematic', icon: Moon },
 ];
 
 export default function Header() {

@@ -62,6 +62,16 @@ export default function Footer() {
                   Modern Tech
                 </Link>
               </li>
+              <li>
+                <Link to="/v4" className="text-white/70 hover:text-white transition-colors text-sm">
+                  Editorial
+                </Link>
+              </li>
+              <li>
+                <Link to="/v5" className="text-white/70 hover:text-white transition-colors text-sm">
+                  Immersive Dark
+                </Link>
+              </li>
             </ul>
           </div>
 
