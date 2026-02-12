@@ -1,4 +1,4 @@
-import { Shield, Check, Lock, Info } from 'lucide-react';
+import { Shield, Check, Info } from 'lucide-react';
 import { bumps } from './OrderBumps';
 import { treatmentPlans } from './TreatmentPlans';
 

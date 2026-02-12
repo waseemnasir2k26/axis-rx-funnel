@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, Star, Crown, Sparkles } from 'lucide-react';
+import { Check, Star } from 'lucide-react';
 
 export interface TreatmentPlan {
   id: string;
@@ -87,7 +87,6 @@ export default function TreatmentPlans({ selected, onSelect }: TreatmentPlansPro
       <div className="grid gap-4">
         {treatmentPlans.map((plan) => {
           const isSelected = selected === plan.id;
-          const Icon = plan.id === 'retatrutide' ? Crown : plan.id === 'tirzepatide' ? Star : Sparkles;
 
           return (
             <motion.button
