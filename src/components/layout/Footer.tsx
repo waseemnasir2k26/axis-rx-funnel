@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, Award, Lock } from 'lucide-react';
+import { Shield, Award, Lock, ExternalLink } from 'lucide-react';
 
 const trustBadges = [
   { icon: Shield, text: 'HIPAA Compliant' },
@@ -17,7 +17,7 @@ export default function Footer() {
         {/* Trust Badges */}
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 pb-12 mb-12 border-b border-white/10">
           {trustBadges.map((badge, i) => (
-            <div key={i} className="flex items-center gap-3 text-white/60">
+            <div key={i} className="flex items-center gap-3 text-white">
               <badge.icon className="w-5 h-5 text-royal-blue" />
               <span className="text-sm font-medium">{badge.text}</span>
             </div>
@@ -35,7 +35,7 @@ export default function Footer() {
                 AXIS<span className="text-royal-blue">RX</span>
               </span>
             </Link>
-            <p className="mt-6 text-white/50 text-sm max-w-sm leading-relaxed">
+            <p className="mt-6 text-white/90 text-sm max-w-sm leading-relaxed">
               Premium GLP-1 therapies prescribed by licensed physicians in Mexico.
               Same active ingredients as Ozempic® and Mounjaro®, 70% below US pharmacy prices.
             </p>
@@ -43,22 +43,22 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="md:col-span-3">
-            <h3 className="font-satoshi font-bold text-sm uppercase tracking-wider text-white/40 mb-5">
+            <h3 className="font-satoshi font-bold text-sm uppercase tracking-wider text-white mb-5">
               Quick Links
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#learn" className="text-white/60 hover:text-white transition-colors text-sm">
+                <a href="#learn" className="text-white/90 hover:text-royal-blue transition-colors text-sm">
                   How It Works
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="text-white/60 hover:text-white transition-colors text-sm">
+                <a href="#pricing" className="text-white/90 hover:text-royal-blue transition-colors text-sm">
                   Pricing
                 </a>
               </li>
               <li>
-                <Link to="/checkout" className="text-white/60 hover:text-white transition-colors text-sm">
+                <Link to="/checkout" className="text-white/90 hover:text-royal-blue transition-colors text-sm">
                   Get Started
                 </Link>
               </li>
@@ -67,10 +67,10 @@ export default function Footer() {
 
           {/* Locations */}
           <div className="md:col-span-3">
-            <h3 className="font-satoshi font-bold text-sm uppercase tracking-wider text-white/40 mb-5">
+            <h3 className="font-satoshi font-bold text-sm uppercase tracking-wider text-white mb-5">
               Locations
             </h3>
-            <ul className="space-y-3 text-sm text-white/60">
+            <ul className="space-y-3 text-sm text-white/90">
               <li>Cancún, MX</li>
               <li>Tijuana, MX</li>
             </ul>
@@ -79,27 +79,28 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm">
+          <p className="text-white/90 text-sm">
             © {new Date().getFullYear()} AXIS RX. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm text-white/40">
-            <a href="#" className="hover:text-white/70 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white/70 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white/70 transition-colors">Medical Disclaimer</a>
+          <div className="flex items-center gap-6 text-sm text-white/90">
+            <a href="#" className="hover:text-royal-blue transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-royal-blue transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-royal-blue transition-colors">Medical Disclaimer</a>
           </div>
         </div>
 
         {/* Developer Credit */}
-        <div className="mt-8 text-center">
-          <p className="text-white/30 text-xs uppercase tracking-wider">
+        <div className="mt-8 pt-6 border-t border-white/5 text-center">
+          <p className="text-white text-sm tracking-wide">
             Designed and Developed by{' '}
             <a
               href="https://www.skynetjoe.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-royal-blue/70 hover:text-royal-blue transition-colors"
+              className="inline-flex items-center gap-1.5 font-bold bg-gradient-to-r from-royal-blue to-indigo-400 bg-clip-text text-transparent hover:from-indigo-400 hover:to-royal-blue transition-all duration-300"
             >
               Skynetlabs
+              <ExternalLink className="w-3.5 h-3.5 text-royal-blue" />
             </a>
           </p>
         </div>
