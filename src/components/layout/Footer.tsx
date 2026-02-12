@@ -88,6 +88,21 @@ export default function Footer() {
             <a href="#" className="hover:text-white/70 transition-colors">Medical Disclaimer</a>
           </div>
         </div>
+
+        {/* Developer Credit */}
+        <div className="mt-8 text-center">
+          <p className="text-white/30 text-xs uppercase tracking-wider">
+            Designed and Developed by{' '}
+            <a
+              href="https://www.skynetjoe.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-royal-blue/70 hover:text-royal-blue transition-colors"
+            >
+              Skynetlabs
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
