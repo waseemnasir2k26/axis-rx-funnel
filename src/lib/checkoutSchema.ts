@@ -1,8 +1,7 @@
 import { z } from 'zod';
 
 export const checkoutSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
+  firstName: z.string().min(1, 'Full name is required'),
   email: z.string().email('Valid email is required'),
   phone: z.string().min(10, 'Valid phone number is required'),
   location: z.enum(['cancun', 'tijuana'], {

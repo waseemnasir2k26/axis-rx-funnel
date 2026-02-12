@@ -1,81 +1,115 @@
-import { Lock, Check } from 'lucide-react';
+import { Shield, Check, Lock, Info } from 'lucide-react';
 import { bumps } from './OrderBumps';
+import { treatmentPlans } from './TreatmentPlans';
 
 interface OrderSummaryProps {
   selectedBumps: Set<string>;
+  selectedPlan: string;
 }
 
-const included = [
-  'Medical consultation',
-  'Stock reservation',
-  'Travel cooler kit',
-  'TSA documentation',
+const trustPoints = [
+  '100% refund if not approved',
+  'Licensed physicians',
+  'HIPAA compliant process',
 ];
 
-export default function OrderSummary({ selectedBumps }: OrderSummaryProps) {
+export default function OrderSummary({ selectedBumps, selectedPlan }: OrderSummaryProps) {
   const deposit = 99;
+  const plan = treatmentPlans.find(p => p.id === selectedPlan) || treatmentPlans[0];
   const addonsTotal = bumps
     .filter((b) => selectedBumps.has(b.id))
     .reduce((sum, b) => sum + b.price, 0);
-  const totalDue = deposit + addonsTotal;
+  const treatmentTotal = plan.price + addonsTotal;
+  const dueAtAppointment = treatmentTotal - deposit;
 
   return (
-    <div className="rounded-axis-lg bg-white border border-accent-silver/50 shadow-soft p-6 sticky top-24">
-      <h3 className="font-satoshi font-bold text-lg text-text-dark mb-6">
-        Order Summary
-      </h3>
+    <div className="space-y-4 sticky top-24">
+      {/* Main Summary Card */}
+      <div className="rounded-2xl bg-navy text-white p-6">
+        <h3 className="font-satoshi font-bold text-lg mb-6">
+          Order Summary
+        </h3>
 
-      <div className="space-y-3 text-sm">
-        <div className="flex justify-between">
-          <span className="text-text-dark/80">Treatment Deposit</span>
-          <span className="font-satoshi font-bold">$99.00</span>
-        </div>
-        {selectedBumps.size > 0 && (
-          <>
-            <div className="pt-2 border-t border-accent-silver/30">
-              <span className="text-text-dark/80">Selected Add-ons:</span>
+        <div className="space-y-4 text-sm">
+          {/* Selected Plan */}
+          <div className="flex justify-between">
+            <div>
+              <p className="font-semibold">{plan.name}</p>
+              <p className="text-white/60">3-month protocol</p>
             </div>
-            {bumps
-              .filter((b) => selectedBumps.has(b.id))
-              .map((b) => (
-                <div key={b.id} className="flex justify-between pl-2">
-                  <span className="text-text-dark/80">{b.title}</span>
-                  <span className="font-medium">${b.price.toFixed(2)}</span>
-                </div>
-              ))}
-          </>
-        )}
-      </div>
+            <span className="font-satoshi font-bold">${plan.price}</span>
+          </div>
 
-      <div className="mt-6 pt-6 border-t-2 border-accent-silver/50">
-        <div className="flex justify-between items-center">
-          <span className="font-satoshi font-bold text-text-dark">Total Due Today</span>
-          <span className="font-satoshi font-bold text-xl text-royal-blue">
-            ${totalDue.toFixed(2)}
-          </span>
+          {/* Selected Add-ons */}
+          {selectedBumps.size > 0 && (
+            <>
+              {bumps
+                .filter((b) => selectedBumps.has(b.id))
+                .map((b) => (
+                  <div key={b.id} className="flex justify-between text-white/80">
+                    <span>{b.title}</span>
+                    <span>+${b.price}</span>
+                  </div>
+                ))}
+            </>
+          )}
+
+          <div className="border-t border-white/20 pt-4">
+            <div className="flex justify-between">
+              <span className="text-white/80">Treatment Total</span>
+              <span className="font-satoshi font-bold">${treatmentTotal}</span>
+            </div>
+          </div>
+
+          <div className="flex justify-between text-royal-blue">
+            <span>Today's Deposit</span>
+            <span className="font-semibold">-${deposit}</span>
+          </div>
+
+          <div className="flex justify-between">
+            <span className="text-white/80">Due at Appointment</span>
+            <span className="font-satoshi font-bold">${dueAtAppointment}</span>
+          </div>
         </div>
-        <p className="mt-2 text-xs text-text-dark/70 flex items-center gap-1">
-          <span aria-hidden>ⓘ</span> Credited toward final treatment
-        </p>
-      </div>
 
-      <div className="mt-6 pt-6 border-t border-accent-silver/30">
-        <p className="font-satoshi font-bold text-sm text-text-dark mb-3">
-          What&apos;s Included
-        </p>
-        <ul className="space-y-2">
-          {included.map((item, i) => (
-            <li key={i} className="flex items-center gap-2 text-sm text-text-dark/80">
-              <Check className="w-4 h-4 text-royal-blue flex-shrink-0" />
-              {item}
-            </li>
+        {/* Today's Charge Box */}
+        <div className="mt-6 bg-white/10 rounded-xl p-4">
+          <div className="flex justify-between items-center">
+            <span className="text-white/80">Today's Charge</span>
+            <span className="font-satoshi font-bold text-2xl">${deposit}</span>
+          </div>
+          <p className="text-xs text-white/50 mt-1">
+            Fully refundable if not medically approved
+          </p>
+        </div>
+
+        {/* Trust Points */}
+        <div className="mt-6 pt-6 border-t border-white/20 space-y-3">
+          {trustPoints.map((point, i) => (
+            <div key={i} className="flex items-center gap-2 text-sm">
+              <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <span className="text-white/80">{point}</span>
+            </div>
           ))}
-        </ul>
+        </div>
+
+        {/* Security Badge */}
+        <div className="mt-6 pt-4 border-t border-white/20 flex items-center justify-center gap-2 text-xs text-white/50">
+          <Shield className="w-4 h-4" />
+          <span>HIPAA Compliant</span>
+          <span className="text-white/30">•</span>
+          <span>SSL Secured</span>
+        </div>
       </div>
 
-      <div className="mt-6 flex items-center gap-2 text-sm text-text-dark/70">
-        <Lock className="w-4 h-4 flex-shrink-0" />
-        256-Bit SSL Encrypted
+      {/* Info Card */}
+      <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
+        <div className="flex gap-3">
+          <Info className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-slate-600 leading-relaxed">
+            After payment, you'll schedule your Virtual Intake call to verify eligibility before your in-person consultation.
+          </p>
+        </div>
       </div>
     </div>
   );

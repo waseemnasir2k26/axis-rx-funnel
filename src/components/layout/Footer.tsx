@@ -9,7 +9,7 @@ const trustBadges = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-off-white relative overflow-hidden">
+    <footer className="bg-[#0a0a0f] text-white relative overflow-hidden border-t border-white/10">
       {/* Subtle gradient accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-royal-blue/50 to-transparent" />
 
@@ -26,8 +26,8 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           {/* Brand */}
-          <div className="md:col-span-5">
-            <Link to="/v1" className="flex items-center gap-3">
+          <div className="md:col-span-6">
+            <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-royal-blue to-indigo-500 flex items-center justify-center">
                 <span className="font-satoshi font-bold text-white text-sm">AX</span>
               </div>
@@ -35,76 +35,42 @@ export default function Footer() {
                 AXIS<span className="text-royal-blue">RX</span>
               </span>
             </Link>
-            <p className="mt-6 text-white/60 text-sm max-w-sm leading-relaxed">
+            <p className="mt-6 text-white/50 text-sm max-w-sm leading-relaxed">
               Premium GLP-1 therapies prescribed by licensed physicians in Mexico.
               Same active ingredients as Ozempic® and Mounjaro®, 70% below US pharmacy prices.
             </p>
           </div>
 
-          {/* Design Variations */}
-          <div className="md:col-span-3">
-            <h3 className="font-satoshi font-bold text-sm uppercase tracking-wider text-white/40 mb-5">
-              Designs
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/v1" className="text-white/70 hover:text-white transition-colors text-sm">
-                  Minimal Luxe
-                </Link>
-              </li>
-              <li>
-                <Link to="/v2" className="text-white/70 hover:text-white transition-colors text-sm">
-                  Bold Medical
-                </Link>
-              </li>
-              <li>
-                <Link to="/v3" className="text-white/70 hover:text-white transition-colors text-sm">
-                  Modern Tech
-                </Link>
-              </li>
-              <li>
-                <Link to="/v4" className="text-white/70 hover:text-white transition-colors text-sm">
-                  Editorial
-                </Link>
-              </li>
-              <li>
-                <Link to="/v5" className="text-white/70 hover:text-white transition-colors text-sm">
-                  Immersive Dark
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Quick Links */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <h3 className="font-satoshi font-bold text-sm uppercase tracking-wider text-white/40 mb-5">
               Quick Links
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors text-sm">
+                <a href="#learn" className="text-white/60 hover:text-white transition-colors text-sm">
                   How It Works
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="text-white/70 hover:text-white transition-colors text-sm">
+                <a href="#pricing" className="text-white/60 hover:text-white transition-colors text-sm">
                   Pricing
                 </a>
               </li>
               <li>
-                <Link to="/checkout" className="text-white/70 hover:text-white transition-colors text-sm">
+                <Link to="/checkout" className="text-white/60 hover:text-white transition-colors text-sm">
                   Get Started
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div className="md:col-span-2">
+          {/* Locations */}
+          <div className="md:col-span-3">
             <h3 className="font-satoshi font-bold text-sm uppercase tracking-wider text-white/40 mb-5">
               Locations
             </h3>
-            <ul className="space-y-3 text-sm text-white/70">
+            <ul className="space-y-3 text-sm text-white/60">
               <li>Cancún, MX</li>
               <li>Tijuana, MX</li>
             </ul>

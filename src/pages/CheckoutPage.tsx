@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import { ArrowLeft, Lock } from 'lucide-react';
 import BookingForm from '@/components/forms/BookingForm';
 import OrderSummary from '@/components/forms/OrderSummary';
 
 export default function CheckoutPage() {
   const [selectedBumps, setSelectedBumps] = useState<Set<string>>(new Set());
+  const [selectedPlan, setSelectedPlan] = useState<string>('semaglutide');
 
   const toggleBump = (id: string) => {
     setSelectedBumps((prev) => {
@@ -20,64 +19,74 @@ export default function CheckoutPage() {
   };
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-off-white pt-24 pb-16">
+    <div className="min-h-screen bg-off-white">
+      {/* Header */}
+      <header className="bg-navy py-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-royal-blue to-indigo-500 flex items-center justify-center">
+              <span className="font-satoshi font-bold text-white text-xs">AX</span>
+            </div>
+            <span className="font-satoshi font-bold text-lg text-white">
+              Axis Rx
+            </span>
+          </Link>
+          <div className="flex items-center gap-2 text-white/70 text-sm">
+            <Lock className="w-4 h-4" />
+            <span className="hidden sm:inline">Secure Checkout</span>
+          </div>
+        </div>
+      </header>
+
+      <main className="py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Back Link */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8"
+            className="mb-6"
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-sm font-medium text-text-dark/70 hover:text-royal-blue transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-text-dark/60 hover:text-royal-blue transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to overview
             </Link>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mb-10"
-          >
-            <h1 className="font-satoshi font-bold text-section text-text-dark">
-              Secure Your Treatment
-            </h1>
-            <p className="mt-2 text-text-dark/80">
-              Complete your reservation in two simple steps.
-            </p>
-          </motion.div>
+          {/* Main Content */}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Left Column - Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-2"
+            >
+              <BookingForm
+                selectedBumps={selectedBumps}
+                onToggleBump={toggleBump}
+                selectedPlan={selectedPlan}
+                onSelectPlan={setSelectedPlan}
+              />
+            </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Right Column - Summary */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="lg:col-span-2"
-            >
-              <div className="rounded-axis-lg bg-white border border-accent-silver/30 shadow-soft p-6 md:p-8">
-                <BookingForm
-                  selectedBumps={selectedBumps}
-                  onToggleBump={toggleBump}
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
               className="lg:col-span-1"
             >
-              <OrderSummary selectedBumps={selectedBumps} />
+              <OrderSummary
+                selectedBumps={selectedBumps}
+                selectedPlan={selectedPlan}
+              />
             </motion.div>
           </div>
         </div>
       </main>
-      <Footer />
-    </>
+    </div>
   );
 }
