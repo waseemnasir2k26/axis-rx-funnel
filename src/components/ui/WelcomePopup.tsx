@@ -60,7 +60,7 @@ export default function WelcomePopup() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg z-[101] flex items-center justify-center"
+            className="fixed inset-0 z-[101] flex items-center justify-center p-4"
           >
             <div className="relative w-full bg-[#0a0a0f] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
               {/* Gradient glow */}
