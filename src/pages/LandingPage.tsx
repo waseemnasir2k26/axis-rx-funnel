@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowDown, ArrowRight, Sparkles, Target, Zap, Heart, Shield, Check } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import WelcomePopup from '@/components/ui/WelcomePopup';
+import ChatAgent from '@/components/ui/ChatAgent';
 import { useRef } from 'react';
 
 const journey = [
@@ -32,6 +34,8 @@ export default function LandingPageV5() {
 
   return (
     <>
+      <WelcomePopup />
+      <ChatAgent />
       <Header />
       <main ref={containerRef} className="bg-[#0a0a0f] text-white">
         {/* Hero - Cinematic Full Screen */}
