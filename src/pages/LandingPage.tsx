@@ -18,7 +18,11 @@ import {
   MapPin,
   Clock,
   Award,
-  Lock
+  Lock,
+  BadgeCheck,
+  Languages,
+  HeartPulse,
+  UserCheck
 } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -433,6 +437,171 @@ export default function LandingPage() {
                 </span>
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Medical Partner Standard Section */}
+        <section className="py-24 bg-off-white text-navy">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <p className="text-royal-blue font-medium tracking-wider uppercase mb-4">The Axis Medical Partner Standard</p>
+              <h2 className="font-satoshi font-bold text-3xl md:text-5xl">
+                We Don't Hire "Staff." We Deploy Vetted Medical Partners.
+              </h2>
+              <p className="mt-4 text-navy/60 text-lg max-w-2xl mx-auto">
+                Every medical professional in the Axis Rx network undergoes a rigorous 4-step validation process before they ever handle a patient.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  icon: BadgeCheck,
+                  title: 'Licensure',
+                  desc: '100% Cédula Profesional (Federal Medical License) verified against the Mexican SEP Database.'
+                },
+                {
+                  icon: Languages,
+                  title: 'Bilingual Certification',
+                  desc: 'C1/C2 English proficiency required for transparent communication with US patients.'
+                },
+                {
+                  icon: HeartPulse,
+                  title: 'Crisis Protocols',
+                  desc: 'Trained in Advanced Cardiac Life Support (ACLS) and proprietary anaphylaxis response protocols.'
+                },
+                {
+                  icon: UserCheck,
+                  title: 'Background Check',
+                  desc: 'Full criminal and professional liability screening before network admission.'
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm text-center"
+                >
+                  <div className="w-14 h-14 rounded-2xl bg-royal-blue/10 flex items-center justify-center mx-auto mb-4">
+                    <item.icon className="w-7 h-7 text-royal-blue" />
+                  </div>
+                  <h3 className="font-satoshi font-bold text-lg text-navy mb-2">{item.title}</h3>
+                  <p className="text-navy/60 text-sm leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Protocol Comparison - Semaglutide vs Tirzepatide */}
+        <section className="py-24 bg-navy">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="font-satoshi font-bold text-3xl md:text-5xl text-off-white">
+                Choose Your Protocol
+              </h2>
+              <p className="mt-4 text-off-white/60 text-lg max-w-2xl mx-auto">
+                Both protocols use the same biological mechanisms. The difference is in the receptor activation.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* Semaglutide Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="p-8 rounded-2xl bg-white/5 border border-white/10"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <span className="px-3 py-1 rounded-full bg-slate-500/20 text-slate-300 text-xs font-bold">THE STANDARD</span>
+                    <h3 className="font-satoshi font-bold text-2xl text-off-white mt-2">Semaglutide</h3>
+                    <p className="text-off-white/50 text-sm">Single GLP-1 Agonist</p>
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-satoshi font-bold text-4xl text-off-white">$549</span>
+                    <span className="text-off-white/50">/ 3 months</span>
+                  </div>
+                  <p className="text-off-white/40 text-sm mt-1">US Monthly Cost: ~$1,300</p>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  {['3-month medication supply', 'Physician consultation included', 'TSA travel documentation', 'Thermal Voyager kit'].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-off-white/70 text-sm">
+                      <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/checkout"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-white/10 text-off-white font-satoshi font-bold rounded-xl hover:bg-white/20 transition-colors"
+                >
+                  Select Protocol
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+
+              {/* Tirzepatide Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="p-8 rounded-2xl bg-royal-blue/20 border-2 border-royal-blue relative"
+              >
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-royal-blue text-white text-xs font-bold rounded-full flex items-center gap-1">
+                  <Star className="w-3 h-3 fill-current" />
+                  RECOMMENDED
+                </div>
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold">THE ADVANCED</span>
+                    <h3 className="font-satoshi font-bold text-2xl text-off-white mt-2">Tirzepatide</h3>
+                    <p className="text-off-white/50 text-sm">Dual GIP/GLP-1 Agonist</p>
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-satoshi font-bold text-4xl text-off-white">$949</span>
+                    <span className="text-off-white/50">/ 3 months</span>
+                  </div>
+                  <p className="text-off-white/40 text-sm mt-1">US Monthly Cost: ~$1,600</p>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  {['Everything in Semaglutide', 'Dual receptor activation', 'Enhanced metabolic response', 'Superior appetite control', 'Faster documented results'].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-off-white/70 text-sm">
+                      <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/checkout"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-royal-blue text-white font-satoshi font-bold rounded-xl hover:shadow-glow-hover transition-all"
+                >
+                  Select Protocol
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </div>
+
+            <p className="mt-8 text-center text-off-white/40 text-sm">
+              Billed as a complete 12-week (3-month) protocol. No monthly subscriptions.
+            </p>
           </div>
         </section>
 
