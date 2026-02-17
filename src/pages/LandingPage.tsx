@@ -1,5 +1,5 @@
 // AXIS RX Landing Page - Premium Concierge Medical Experience
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
@@ -203,6 +203,28 @@ export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true });
+  const location = useLocation();
+
+  // Handle hash navigation on page load
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.replace('#', '');
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const headerOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   return (
     <>
@@ -460,7 +482,7 @@ export default function LandingPage() {
         </section>
 
         {/* Process Steps */}
-        <section className="py-24 bg-navy">
+        <section id="learn" className="py-24 bg-navy">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -617,7 +639,7 @@ export default function LandingPage() {
         </section>
 
         {/* Protocol Comparison - Semaglutide vs Tirzepatide */}
-        <section className="py-24 bg-navy relative overflow-hidden">
+        <section id="pricing" className="py-24 bg-navy relative overflow-hidden">
           {/* Animated background gradient */}
           <motion.div
             className="absolute inset-0 opacity-30"
