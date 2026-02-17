@@ -26,11 +26,11 @@ const knowledgeBase: Record<string, { response: string; showCTA?: boolean }> = {
     response: "GLP-1 (Glucagon-like peptide-1) therapies are FDA-approved medications that help regulate appetite, blood sugar, and promote significant weight loss. Our treatments include:\n\n• **Semaglutide** (Single Agonist) - The proven classic, same as Ozempic®\n• **Tirzepatide** (Dual Agonist) - Enhanced results, same as Mounjaro®\n• **Retatrutide** (Triple Agonist) - Our elite protocol for maximum results\n\nThese are prescribed by licensed physicians and delivered during your Mexico visit.",
   },
   'cost': {
-    response: "Our pricing is transparent with no hidden fees:\n\n• **Semaglutide** - $549 for 3 months\n• **Tirzepatide** - $899 for 3 months\n• **Retatrutide** - $1,449 for 3 months\n\nCompare this to US prices of $1,000-$1,600 PER MONTH! You save over $3,100 on a 3-month protocol.\n\nWe only require a $99 refundable deposit to reserve your spot.",
+    response: "Our pricing is transparent with no hidden fees:\n\n• **Semaglutide** - $499 for 3 months\n• **Tirzepatide** - $899 for 3 months\n• **Retatrutide** - $1,199 for 3 months\n\nCompare this to US prices of $1,000-$1,600 PER MONTH! You save over $3,100 on a 3-month protocol.\n\nWe only require a $99 refundable deposit to reserve your spot.",
     showCTA: true,
   },
   'price': {
-    response: "Our pricing is transparent with no hidden fees:\n\n• **Semaglutide** - $549 for 3 months\n• **Tirzepatide** - $899 for 3 months\n• **Retatrutide** - $1,449 for 3 months\n\nCompare this to US prices of $1,000-$1,600 PER MONTH! You save over $3,100 on a 3-month protocol.\n\nWe only require a $99 refundable deposit to reserve your spot.",
+    response: "Our pricing is transparent with no hidden fees:\n\n• **Semaglutide** - $499 for 3 months\n• **Tirzepatide** - $899 for 3 months\n• **Retatrutide** - $1,199 for 3 months\n\nCompare this to US prices of $1,000-$1,600 PER MONTH! You save over $3,100 on a 3-month protocol.\n\nWe only require a $99 refundable deposit to reserve your spot.",
     showCTA: true,
   },
   'legal': {

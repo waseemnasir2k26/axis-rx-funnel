@@ -21,7 +21,7 @@ export const treatmentPlans: TreatmentPlan[] = [
     type: 'GLP-1',
     compound: 'Semaglutide',
     tagline: 'The proven classic for steady progress.',
-    price: 549,
+    price: 499,
     badge: 'Good',
     badgeColor: 'bg-slate-100 text-slate-600',
     features: [
@@ -55,7 +55,7 @@ export const treatmentPlans: TreatmentPlan[] = [
     type: 'GIP/GLP-1/Glucagon',
     compound: 'Retatrutide',
     tagline: 'Maximum metabolic optimization for those who want the absolute gold standard.',
-    price: 1449,
+    price: 1199,
     badge: 'Elite',
     badgeColor: 'bg-amber-100 text-amber-700',
     features: [
