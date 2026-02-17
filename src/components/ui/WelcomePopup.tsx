@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Sparkles, Shield, Clock, DollarSign, ArrowRight, Zap } from 'lucide-react';
+import { X, Check, Shield, Clock, DollarSign, ArrowRight, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const benefits = [

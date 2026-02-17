@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, Lock, MapPin, Mail, Instagram, ExternalLink, Phone, Sparkles, ArrowRight } from 'lucide-react';
+import { Shield, Lock, MapPin, Mail, Instagram, ExternalLink, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
