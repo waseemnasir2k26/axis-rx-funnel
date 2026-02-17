@@ -15,13 +15,12 @@ export default function Header() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-royal-blue to-indigo-500 flex items-center justify-center shadow-lg shadow-royal-blue/20 group-hover:shadow-royal-blue/40 transition-shadow">
-              <span className="font-satoshi font-bold text-white text-sm">AX</span>
-            </div>
-            <span className="font-satoshi font-bold text-xl text-white tracking-tight">
-              AXIS<span className="text-royal-blue">RX</span>
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/images/axisrx-logo-dark.png"
+              alt="AXIS RX"
+              className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Navigation */}

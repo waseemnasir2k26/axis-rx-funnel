@@ -28,13 +28,13 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WelcomePopup from '@/components/ui/WelcomePopup';
 import ChatAgent from '@/components/ui/ChatAgent';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 // Stats ticker data
 const stats = [
   { value: '15-20%', label: 'Avg Body Weight Loss', note: 'Clinical efficacy*' },
   { value: '100%', label: 'Cold Chain Integrity', note: 'Delivery precision' },
-  { value: '0', label: 'Customs Incidents', note: 'Legal compliance' },
+  { value: '0', label: 'Customs Incidents', note: '100% Legal Import' },
   { value: '4.9/5', label: 'Patient Rating', note: 'Post-deployment' },
 ];
 
@@ -65,7 +65,7 @@ const steps = [
     num: '04',
     icon: Stethoscope,
     title: 'Consult & Receive',
-    desc: 'Meet your Certified Physician (20-30 mins) for comprehensive check-up and dosage review.',
+    desc: 'Meet your Certified Physician for In-Suite Visit, comprehensive check-up and dosage review.',
     detail: 'Receive full 3-month supply'
   },
 ];
@@ -80,7 +80,7 @@ const testimonials = [
     verified: true
   },
   {
-    quote: "In Beverly Hills, I wait 2 weeks for an appointment. In Cabo, Axis Rx was in my villa in 3 hours. The packaging is on par with Apple. Down 18 lbs in 2 months.",
+    quote: "In Beverly Hills, I wait 2 weeks for an appointment. In Cancún, Axis Rx was in my villa in 3 hours. The packaging is on par with Apple. Down 18 lbs in 2 months.",
     name: 'Sarah M.',
     location: 'Los Angeles, CA',
     title: 'Better than my concierge doctor in LA.',
@@ -123,10 +123,85 @@ const faqs = [
   },
 ];
 
+// Animated counter component
+function AnimatedCounter({ value, inView }: { value: string; inView: boolean }) {
+  const [displayValue, setDisplayValue] = useState('0');
+
+  useEffect(() => {
+    if (!inView) return;
+
+    // Parse the value to determine animation type
+    if (value === '15-20%') {
+      // Animate from 0 to 15, then show full string
+      let current = 0;
+      const target = 15;
+      const duration = 1500;
+      const stepTime = duration / target;
+
+      const timer = setInterval(() => {
+        current += 1;
+        if (current >= target) {
+          clearInterval(timer);
+          setDisplayValue('15-20%');
+        } else {
+          setDisplayValue(`${current}%`);
+        }
+      }, stepTime);
+
+      return () => clearInterval(timer);
+    } else if (value === '100%') {
+      let current = 0;
+      const target = 100;
+      const duration = 1500;
+      const increment = 2;
+      const stepTime = duration / (target / increment);
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          clearInterval(timer);
+          setDisplayValue('100%');
+        } else {
+          setDisplayValue(`${current}%`);
+        }
+      }, stepTime);
+
+      return () => clearInterval(timer);
+    } else if (value === '0') {
+      // Quick flash to 0
+      setDisplayValue('0');
+    } else if (value === '4.9/5') {
+      let current = 0;
+      const target = 4.9;
+      const duration = 1500;
+      const steps = 49;
+      const stepTime = duration / steps;
+
+      const timer = setInterval(() => {
+        current += 0.1;
+        if (current >= target) {
+          clearInterval(timer);
+          setDisplayValue('4.9/5');
+        } else {
+          setDisplayValue(`${current.toFixed(1)}/5`);
+        }
+      }, stepTime);
+
+      return () => clearInterval(timer);
+    } else {
+      setDisplayValue(value);
+    }
+  }, [inView, value]);
+
+  return <>{displayValue}</>;
+}
+
 export default function LandingPage() {
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true });
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const statsRef = useRef(null);
+  const isStatsInView = useInView(statsRef, { once: true });
 
   return (
     <>
@@ -137,7 +212,7 @@ export default function LandingPage() {
         {/* Hero Section */}
         <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
           {/* Background Image */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 pointer-events-none">
             <img
               src="/images/concierge-arrival.png"
               alt="AXIS RX Concierge Service"
@@ -251,7 +326,7 @@ export default function LandingPage() {
         </section>
 
         {/* Social Proof Ticker */}
-        <section className="py-16 bg-navy border-y border-white/5">
+        <section ref={statsRef} className="py-16 bg-navy border-y border-white/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, i) => (
@@ -263,7 +338,9 @@ export default function LandingPage() {
                   transition={{ delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <p className="font-satoshi font-bold text-3xl md:text-4xl text-royal-blue">{stat.value}</p>
+                  <p className="font-satoshi font-bold text-3xl md:text-4xl text-royal-blue">
+                    <AnimatedCounter value={stat.value} inView={isStatsInView} />
+                  </p>
                   <p className="mt-2 text-off-white font-medium">{stat.label}</p>
                   <p className="text-off-white/40 text-sm">{stat.note}</p>
                 </motion.div>
@@ -313,8 +390,8 @@ export default function LandingPage() {
                   {[
                     { label: 'Medication Cost (3 Months)', value: '$4,200 USD' },
                     { label: 'Doctor Consultation', value: '$300 - $500 USD' },
-                    { label: 'Prescription & Legal Fees', value: 'Varies' },
-                    { label: 'Concierge Delivery', value: 'N/A' },
+                    { label: 'Prescription & Legal Fees', value: '$200+' },
+                    { label: 'Concierge Delivery', value: 'EXPENSIVE' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center justify-between py-3 border-b border-gray-100">
                       <span className="text-navy/60">{item.label}</span>
@@ -333,11 +410,12 @@ export default function LandingPage() {
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="p-8 rounded-2xl bg-navy text-off-white border-2 border-royal-blue shadow-glow relative overflow-hidden"
+                className="rounded-2xl bg-navy text-off-white border-2 border-royal-blue shadow-glow relative overflow-hidden"
               >
-                <div className="absolute top-4 right-4 bg-royal-blue text-white text-xs font-bold px-3 py-1 rounded-full">
+                <div className="bg-royal-blue text-white text-xs font-bold px-4 py-2 text-center tracking-wider">
                   RECOMMENDED
                 </div>
+                <div className="p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-full bg-royal-blue/20 flex items-center justify-center">
                     <span className="text-xl">🇲🇽</span>
@@ -370,6 +448,7 @@ export default function LandingPage() {
                     <span className="text-royal-blue font-bold text-lg">YOUR SAVINGS: 70% OFF</span>
                   </div>
                 </div>
+                </div>
               </motion.div>
             </div>
 
@@ -398,21 +477,32 @@ export default function LandingPage() {
               {steps.map((step, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-royal-blue/50 transition-colors"
+                  transition={{ delay: i * 0.15, duration: 0.5, ease: "easeOut" }}
+                  whileHover={{ y: -8, scale: 1.03, borderColor: 'rgba(44, 81, 163, 0.8)' }}
+                  className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-royal-blue/50 hover:bg-white/10 transition-all duration-300"
                 >
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 rounded-2xl bg-royal-blue/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-royal-blue flex items-center justify-center">
+                    <motion.div
+                      className="w-12 h-12 rounded-xl bg-royal-blue flex items-center justify-center shadow-lg shadow-royal-blue/30"
+                      whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       <step.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-5xl font-satoshi font-bold text-white/5">{step.num}</span>
+                    </motion.div>
+                    <span className="text-5xl font-satoshi font-bold text-white/5 group-hover:text-white/10 transition-colors">{step.num}</span>
                   </div>
                   <h3 className="font-satoshi font-bold text-xl text-off-white mb-2">{step.title}</h3>
                   <p className="text-off-white/50 text-sm leading-relaxed">{step.desc}</p>
-                  <p className="mt-4 text-royal-blue text-sm font-medium">{step.detail}</p>
+                  <div className="mt-4 flex items-center gap-2 text-sm">
+                    <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
+                    <span className="text-green-400 font-medium">{step.detail}</span>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -441,15 +531,28 @@ export default function LandingPage() {
         </section>
 
         {/* Medical Partner Standard Section */}
-        <section className="py-24 bg-off-white text-navy">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 bg-off-white text-navy relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-royal-blue/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <p className="text-royal-blue font-medium tracking-wider uppercase mb-4">The Axis Medical Partner Standard</p>
+              <motion.p
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-royal-blue font-medium tracking-wider uppercase mb-4"
+              >
+                The Axis Medical Partner Standard
+              </motion.p>
               <h2 className="font-satoshi font-bold text-3xl md:text-5xl">
                 We Don't Hire "Staff." We Deploy Vetted Medical Partners.
               </h2>
@@ -463,37 +566,49 @@ export default function LandingPage() {
                 {
                   icon: BadgeCheck,
                   title: 'Licensure',
-                  desc: '100% Cédula Profesional (Federal Medical License) verified against the Mexican SEP Database.'
+                  desc: '100% Cédula Profesional (Federal Medical License) verified against the Mexican SEP Database.',
+                  color: 'from-blue-500 to-royal-blue'
                 },
                 {
                   icon: Languages,
                   title: 'Bilingual Certification',
-                  desc: 'C1/C2 English proficiency required for transparent communication with US patients.'
+                  desc: 'C1/C2 English proficiency required for transparent communication with US patients.',
+                  color: 'from-emerald-500 to-teal-500'
                 },
                 {
                   icon: HeartPulse,
                   title: 'Crisis Protocols',
-                  desc: 'Trained in Advanced Cardiac Life Support (ACLS) and proprietary anaphylaxis response protocols.'
+                  desc: 'Trained in Advanced Cardiac Life Support (ACLS) and proprietary anaphylaxis response protocols.',
+                  color: 'from-rose-500 to-pink-500'
                 },
                 {
                   icon: UserCheck,
                   title: 'Background Check',
-                  desc: 'Full criminal and professional liability screening before network admission.'
+                  desc: 'Full criminal and professional liability screening before network admission.',
+                  color: 'from-violet-500 to-purple-500'
                 }
               ].map((item, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm text-center"
+                  transition={{ delay: i * 0.15, duration: 0.5, ease: "easeOut" }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 text-center relative overflow-hidden"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-royal-blue/10 flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="w-7 h-7 text-royal-blue" />
-                  </div>
-                  <h3 className="font-satoshi font-bold text-lg text-navy mb-2">{item.title}</h3>
-                  <p className="text-navy/60 text-sm leading-relaxed">{item.desc}</p>
+                  {/* Gradient overlay on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+
+                  <motion.div
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mx-auto mb-4 shadow-lg`}
+                    whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <item.icon className="w-7 h-7 text-white" />
+                  </motion.div>
+                  <h3 className="font-satoshi font-bold text-lg text-navy mb-2 relative z-10">{item.title}</h3>
+                  <p className="text-navy/60 text-sm leading-relaxed relative z-10">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -501,12 +616,26 @@ export default function LandingPage() {
         </section>
 
         {/* Protocol Comparison - Semaglutide vs Tirzepatide */}
-        <section className="py-24 bg-navy">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 bg-navy relative overflow-hidden">
+          {/* Animated background gradient */}
+          <motion.div
+            className="absolute inset-0 opacity-30"
+            animate={{
+              background: [
+                'radial-gradient(ellipse 80% 50% at 20% 50%, rgba(44, 81, 163, 0.3) 0%, transparent 50%)',
+                'radial-gradient(ellipse 80% 50% at 80% 50%, rgba(44, 81, 163, 0.3) 0%, transparent 50%)',
+                'radial-gradient(ellipse 80% 50% at 20% 50%, rgba(44, 81, 163, 0.3) 0%, transparent 50%)',
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
               <h2 className="font-satoshi font-bold text-3xl md:text-5xl text-off-white">
@@ -517,13 +646,14 @@ export default function LandingPage() {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {/* Semaglutide Card */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="p-8 rounded-2xl bg-white/5 border border-white/10"
+                transition={{ delay: 0 }}
+                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
               >
                 <div className="flex items-center justify-between mb-6">
                   <div>
@@ -534,7 +664,7 @@ export default function LandingPage() {
                 </div>
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2">
-                    <span className="font-satoshi font-bold text-4xl text-off-white">$549</span>
+                    <span className="font-satoshi font-bold text-4xl text-off-white">$499</span>
                     <span className="text-off-white/50">/ 3 months</span>
                   </div>
                   <p className="text-off-white/40 text-sm mt-1">US Monthly Cost: ~$1,300</p>
@@ -558,9 +688,10 @@ export default function LandingPage() {
 
               {/* Tirzepatide Card */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
                 className="p-8 rounded-2xl bg-royal-blue/20 border-2 border-royal-blue relative"
               >
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-royal-blue text-white text-xs font-bold rounded-full flex items-center gap-1">
@@ -576,7 +707,7 @@ export default function LandingPage() {
                 </div>
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2">
-                    <span className="font-satoshi font-bold text-4xl text-off-white">$949</span>
+                    <span className="font-satoshi font-bold text-4xl text-off-white">$899</span>
                     <span className="text-off-white/50">/ 3 months</span>
                   </div>
                   <p className="text-off-white/40 text-sm mt-1">US Monthly Cost: ~$1,600</p>
@@ -597,10 +728,68 @@ export default function LandingPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
+
+              {/* Retatrutide Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 border-2 border-amber-500/50 relative overflow-hidden"
+              >
+                {/* Premium glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent" />
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-amber-500/20 rounded-full blur-3xl" />
+
+                {/* Upscale badge */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white text-xs font-bold rounded-full flex items-center gap-1.5 shadow-lg shadow-amber-500/30">
+                  <Sparkles className="w-3 h-3" />
+                  THE VISIONARY
+                </div>
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/20 to-rose-500/20 text-amber-400 text-xs font-bold border border-amber-500/30">TRIPLE AGONIST</span>
+                      <h3 className="font-satoshi font-bold text-2xl text-off-white mt-2">Retatrutide</h3>
+                      <p className="text-off-white/50 text-sm">GIP/GLP-1/Glucagon</p>
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-satoshi font-bold text-4xl bg-gradient-to-r from-amber-400 to-rose-400 bg-clip-text text-transparent">$1,199</span>
+                      <span className="text-off-white/50">/ 3 months</span>
+                    </div>
+                    <p className="text-amber-400/70 text-sm mt-1 font-medium">US: Not Available Yet</p>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      'Everything in Tirzepatide',
+                      'Triple receptor activation (GLP-1, GIP, & Glucagon)',
+                      'Maximum metabolic rate increase',
+                      'Highest clinical efficacy (~24% weight loss)',
+                      'Breaks resistant plateaus immediately',
+                      'For experienced users only'
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-off-white/70 text-sm">
+                        <Check className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to="/checkout"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white font-satoshi font-bold rounded-xl hover:shadow-lg hover:shadow-amber-500/30 transition-all"
+                  >
+                    Select Protocol
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </motion.div>
             </div>
 
-            <p className="mt-8 text-center text-off-white/40 text-sm">
-              Billed as a complete 12-week (3-month) protocol. No monthly subscriptions.
+            <p className="mt-8 text-center text-off-white/80 text-sm font-medium">
+              Billed as a complete 12-week (3-month) protocol. <span className="text-green-400">No monthly subscriptions.</span>
             </p>
           </div>
         </section>
@@ -661,19 +850,30 @@ export default function LandingPage() {
               >
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <img
-                    src="/images/unboxing-pool.png"
-                    alt="AXIS RX Thermal Voyager Kit Unboxing"
+                    src="/images/travel-kit.png"
+                    alt="AXIS RX Travel Kit"
                     className="w-full h-auto"
                   />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-navy/90 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                      <Check className="w-5 h-5 text-green-400" />
+                {/* Integrated compliance badge */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy via-navy/95 to-transparent pt-16 pb-6 px-6 rounded-b-3xl">
+                  <div className="flex items-center justify-center gap-6">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+                        <Check className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-emerald-400 font-satoshi font-bold text-lg">0 Customs Incidents</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-off-white/70 text-sm">Zero Customs Incidents</p>
-                      <p className="text-off-white font-satoshi font-bold">100% Compliance Rate</p>
+                    <div className="w-px h-8 bg-white/20" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-royal-blue flex items-center justify-center">
+                        <Shield className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-royal-blue font-satoshi font-bold text-lg">100% Legal Import</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -702,24 +902,40 @@ export default function LandingPage() {
                 Medical Integrity First.
               </h2>
               <p className="text-off-white/60 text-lg max-w-2xl mx-auto mb-6">
-                Your $99 USD deposit secures your consultation and reserves your medication vial from our limited daily stock. This deposit is fully creditable toward your treatment total.
+                Your $99 USD deposit secures your consultation and reserves your medication allocation from our limited daily stock. This deposit is fully creditable toward your treatment total.
               </p>
               <p className="text-off-white/80 font-medium">
-                If our Medical Director determines you are not a candidate for GLP-1 therapy during the intake screening, you will receive an <span className="text-royal-blue">immediate 100% refund</span>. Zero financial risk to see if you qualify.
+                If our Medical Director determines you are not a candidate for GLP-1 therapy during the intake screening, you will receive an <span className="text-green-400 font-bold">immediate 100% refund</span>. Zero financial risk to see if you qualify.
               </p>
             </motion.div>
           </div>
         </section>
 
         {/* Testimonials */}
-        <section className="py-24 bg-off-white text-navy">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 bg-off-white text-navy relative overflow-hidden">
+          {/* Background decorative elements */}
+          <div className="absolute top-20 right-10 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-64 h-64 bg-royal-blue/10 rounded-full blur-3xl" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                className="inline-flex items-center gap-1 mb-4"
+              >
+                {[...Array(5)].map((_, j) => (
+                  <Star key={j} className="w-6 h-6 fill-amber-400 text-amber-400" />
+                ))}
+              </motion.div>
               <h2 className="font-satoshi font-bold text-3xl md:text-5xl">
                 Client Experiences
               </h2>
@@ -732,11 +948,12 @@ export default function LandingPage() {
               {testimonials.map((t, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 50, rotateX: 10 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
+                  transition={{ delay: i * 0.15, duration: 0.5, ease: "easeOut" }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
                 >
                   <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, j) => (
@@ -770,8 +987,8 @@ export default function LandingPage() {
             alt="AXIS RX Concierge Consultation"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent" />
-          <div className="absolute inset-0 flex items-center">
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 flex items-center z-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -787,7 +1004,7 @@ export default function LandingPage() {
                 </p>
                 <Link
                   to="/checkout"
-                  className="mt-8 inline-flex items-center gap-2 px-8 py-4 bg-royal-blue text-white font-satoshi font-bold text-lg rounded-xl hover:shadow-glow-hover transition-all"
+                  className="mt-8 inline-flex items-center gap-2 px-8 py-4 bg-royal-blue text-white font-satoshi font-bold text-lg rounded-xl hover:shadow-glow-hover transition-all relative z-20"
                 >
                   Book Your Consultation
                   <ArrowRight className="w-5 h-5" />
@@ -847,7 +1064,7 @@ export default function LandingPage() {
         {/* Final CTA */}
         <section className="py-32 relative overflow-hidden">
           {/* Background */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 pointer-events-none">
             <img
               src="/images/lifestyle-couple.png"
               alt="Lifestyle"
@@ -872,23 +1089,27 @@ export default function LandingPage() {
               </p>
               <Link
                 to="/checkout"
-                className="inline-flex items-center gap-3 px-10 py-5 bg-royal-blue text-white font-satoshi font-bold text-xl rounded-xl hover:shadow-glow-hover transition-all"
+                className="relative z-20 inline-flex items-center gap-3 px-10 py-5 bg-royal-blue text-white font-satoshi font-bold text-xl rounded-xl hover:shadow-glow-hover transition-all cursor-pointer"
               >
                 Secure Your Treatment — $99 Deposit
                 <ArrowRight className="w-6 h-6" />
               </Link>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-8 text-off-white/50 text-sm">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-8 text-white text-sm">
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
+                  <Clock className="w-4 h-4 text-cyan-400" />
                   <span>Same-day confirmation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4" />
+                  <Shield className="w-4 h-4 text-emerald-400" />
                   <span>HIPAA compliant</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FileCheck className="w-4 h-4" />
+                  <FileCheck className="w-4 h-4 text-amber-400" />
                   <span>TSA travel letter included</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-violet-400" />
+                  <span>Official Rx Included</span>
                 </div>
               </div>
             </motion.div>
