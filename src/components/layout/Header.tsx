@@ -17,9 +17,9 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
-              src="/images/axisrx-logo-dark.png"
+              src="/images/axisrx-logo-light.png"
               alt="AXIS RX"
-              className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-8 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
             />
           </Link>
 

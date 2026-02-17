@@ -93,13 +93,12 @@ export default function CheckoutPage() {
       <header className="bg-navy sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-royal-blue to-indigo-500 flex items-center justify-center">
-                <span className="font-satoshi font-bold text-white text-xs">AX</span>
-              </div>
-              <span className="font-satoshi font-bold text-lg text-white">
-                Axis <span className="text-royal-blue">Rx</span>
-              </span>
+            <Link to="/" className="flex items-center">
+              <img
+                src="/images/axisrx-logo-light.png"
+                alt="AXIS RX"
+                className="h-8 w-auto object-contain"
+              />
             </Link>
 
             <div className="flex items-center gap-4">

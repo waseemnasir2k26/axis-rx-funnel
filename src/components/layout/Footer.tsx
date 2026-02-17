@@ -67,9 +67,9 @@ export default function Footer() {
             <div className="md:col-span-4">
               <Link to="/" className="inline-flex items-center group">
                 <img
-                  src="/images/axisrx-logo-dark.png"
+                  src="/images/axisrx-logo-light.png"
                   alt="AXIS RX"
-                  className="h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+                  className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
                 />
               </Link>
               <p className="mt-6 text-white/60 text-sm leading-relaxed">
