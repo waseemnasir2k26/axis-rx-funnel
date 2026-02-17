@@ -2,6 +2,14 @@ import { Link } from 'react-router-dom';
 import { Shield, Lock, MapPin, Mail, Instagram, ExternalLink, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
+  const scrollToDisclaimer = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById('legal-disclaimer');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="relative overflow-hidden">
       {/* Gradient background */}
@@ -147,7 +155,7 @@ export default function Footer() {
         </div>
 
         {/* Legal Disclaimer */}
-        <div className="border-t border-white/10">
+        <div id="legal-disclaimer" className="border-t border-white/10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="p-6 rounded-xl bg-white/5 border border-white/10">
               <p className="text-white/50 text-xs leading-relaxed text-center">
@@ -168,9 +176,9 @@ export default function Footer() {
                 © {new Date().getFullYear()} AXIS RX LLC. All rights reserved.
               </p>
               <div className="flex items-center gap-6 text-sm">
-                <a href="#" className="text-white/50 hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="text-white/50 hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="text-white/50 hover:text-white transition-colors">Medical Disclaimer</a>
+                <a href="#legal-disclaimer" onClick={scrollToDisclaimer} className="text-white/50 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#legal-disclaimer" onClick={scrollToDisclaimer} className="text-white/50 hover:text-white transition-colors">Terms of Service</a>
+                <a href="#legal-disclaimer" onClick={scrollToDisclaimer} className="text-white/50 hover:text-white transition-colors">Medical Disclaimer</a>
               </div>
             </div>
           </div>

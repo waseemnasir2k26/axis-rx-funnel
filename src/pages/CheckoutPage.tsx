@@ -251,6 +251,7 @@ export default function CheckoutPage() {
                           name="arrivalDate"
                           value={formData.arrivalDate}
                           onChange={handleInputChange}
+                          min={new Date().toISOString().split('T')[0]}
                           className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-royal-blue focus:border-transparent transition-all text-slate-900"
                         />
                       </div>

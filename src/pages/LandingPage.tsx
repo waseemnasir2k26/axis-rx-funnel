@@ -873,8 +873,8 @@ export default function LandingPage() {
               >
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <img
-                    src="/images/travel-kit.png"
-                    alt="AXIS RX Travel Kit"
+                    src="/images/thermal-voyager.png"
+                    alt="AXIS RX Thermal Voyager Travel Kit"
                     className="w-full h-auto"
                   />
                 </div>
