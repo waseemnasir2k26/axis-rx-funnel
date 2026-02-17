@@ -28,6 +28,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WelcomePopup from '@/components/ui/WelcomePopup';
 import ChatAgent from '@/components/ui/ChatAgent';
+import SafeCrossing from '@/components/sections/SafeCrossing';
 import { useRef, useState, useEffect } from 'react';
 
 // Stats ticker data
@@ -910,6 +911,9 @@ export default function LandingPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* Safe Crossing Guarantee */}
+        <SafeCrossing />
 
         {/* Testimonials */}
         <section className="py-24 bg-off-white text-navy relative overflow-hidden">
