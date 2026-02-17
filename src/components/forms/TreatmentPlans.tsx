@@ -37,7 +37,7 @@ export const treatmentPlans: TreatmentPlan[] = [
     type: 'GIP/GLP-1',
     compound: 'Tirzepatide',
     tagline: 'Our most popular high-performance protocol.',
-    price: 949,
+    price: 899,
     badge: 'Recommended',
     badgeColor: 'bg-emerald-100 text-emerald-700',
     recommended: true,

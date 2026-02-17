@@ -447,7 +447,7 @@ export default function CheckoutPage() {
                       <h3 className="font-satoshi font-bold text-slate-900 mb-4">Order Review</h3>
                       <div className="space-y-3 text-sm">
                         <div className="flex justify-between">
-                          <span className="text-slate-600">{plan.name} ({plan.compound})</span>
+                          <span className="text-slate-600">{plan.compound}: {plan.name}</span>
                           <span className="font-medium">${plan.price}</span>
                         </div>
                         {bumps.filter(b => selectedBumps.has(b.id)).map(b => (
@@ -565,7 +565,7 @@ export default function CheckoutPage() {
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <div>
-                      <p className="font-medium">{plan.name}</p>
+                      <p className="font-medium">{plan.compound}: {plan.name}</p>
                       <p className="text-white/60">3-month protocol</p>
                     </div>
                     <span className="font-bold">${plan.price}</span>
