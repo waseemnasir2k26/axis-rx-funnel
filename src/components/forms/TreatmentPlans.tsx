@@ -26,7 +26,7 @@ export const treatmentPlans: TreatmentPlan[] = [
     badgeColor: 'bg-slate-100 text-slate-600',
     features: [
       '3-month supply',
-      'High-purity lyophilized vials',
+      'High-purity lyophilized system',
       'Physician consultation',
       'Travel kit included',
     ],

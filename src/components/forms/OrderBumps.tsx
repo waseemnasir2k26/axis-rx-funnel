@@ -17,18 +17,18 @@ const bumps: OrderBump[] = [
   {
     id: 'b12',
     title: 'The Energy Booster',
-    subtitle: 'Bio-Active B12 (Methylcobalamin) Vial',
+    subtitle: 'Bio-Active B12 (Methylcobalamin) System',
     price: 25,
     badge: 'Popular',
     badgeColor: 'bg-amber-100 text-amber-700',
     icon: Zap,
     description:
-      'Combat "Ozempic Fatigue": GLP-1 therapies can temporarily lower energy as your body adjusts. Add this high-potency B12 vial to your kit to optimize sleep, boost daily energy, and accelerate metabolic function.',
+      'Combat "Ozempic Fatigue": GLP-1 therapies can temporarily lower energy as your body adjusts. Add this high-potency B12 system to your kit to optimize sleep, boost daily energy, and accelerate metabolic function.',
   },
   {
     id: 'nad',
     title: "The Biohacker's Choice",
-    subtitle: 'NAD+ 500mg Vial (Lyophilized)',
+    subtitle: 'NAD+ 500mg System (Lyophilized)',
     price: 250,
     badge: 'Premium',
     badgeColor: 'bg-violet-100 text-violet-700',

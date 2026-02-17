@@ -22,7 +22,7 @@ export default function RiskReversal() {
           className="text-lg text-text-dark/90 leading-relaxed mb-10"
         >
           We operate under strict medical guidelines. Your $99 USD deposit secures your
-          consultation and reserves your medication vial from our limited daily stock.
+          consultation and reserves your medication system from our limited daily stock.
         </motion.p>
 
         <motion.div
