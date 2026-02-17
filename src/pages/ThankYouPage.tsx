@@ -118,7 +118,7 @@ export default function ThankYouPage() {
             transition={{ delay: 0.6 }}
             className="mt-10"
           >
-            <Link to="/#process">
+            <Link to="/#learn">
               <Button variant="primary" size="lg">
                 Schedule My Virtual Intake
               </Button>
