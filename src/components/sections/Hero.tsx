@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, CheckCircle, Package, FileText, ArrowRight, Sparkles } from 'lucide-react';
+import { Lock, CheckCircle, FileText, ArrowRight, Sparkles, Package } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -26,21 +26,30 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         <div className="flex-1 text-center lg:text-left">
-          <motion.h1
+          <motion.img
+            src="/images/axisrx-hero-logo.png"
+            alt="AXIS RX"
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={0}
+            className="h-16 md:h-20 lg:h-24 w-auto object-contain mb-6 mx-auto lg:mx-0"
+          />
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={1}
             className="font-satoshi font-bold text-hero text-off-white leading-tight"
             style={{ letterSpacing: '-1px' }}
           >
-            Premium GLP-1 Therapies. 70% Below US Pharmacy Prices.
+            Premium GLP-1 Therapies. 85% Below US Pharmacy Prices.
           </motion.h1>
           <motion.p
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={1}
+            custom={2}
             className="mt-6 text-lg md:text-xl text-off-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
           >
             Access the exact same active ingredients (Semaglutide & Tirzepatide) used in
@@ -51,7 +60,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={2}
+            custom={3}
             className="mt-10 flex flex-col items-center lg:items-start gap-6"
           >
             {/* Premium CTA Card */}
@@ -65,11 +74,11 @@ export default function Hero() {
                 <div className="flex items-baseline gap-3 mb-4">
                   <span className="text-5xl sm:text-6xl font-bold text-white">$499</span>
                   <span className="text-xl text-white/40 line-through">$1,500</span>
-                  <span className="bg-emerald-500/20 text-emerald-400 text-sm font-bold px-2 py-1 rounded-full">Save 67%</span>
+                  <span className="bg-emerald-500/20 text-emerald-400 text-sm font-bold px-2 py-1 rounded-full">Save 85%</span>
                 </div>
                 <p className="text-white/70 text-sm mb-6">Everything included: medication, Rx, supplies & delivery</p>
                 <Link to="/checkout">
-                  <button className="w-full bg-gradient-to-r from-royal-blue to-cyan-500 hover:from-royal-blue hover:to-cyan-400 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-royal-blue/30 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]">
+                  <button className="w-full bg-gradient-to-r from-royal-blue via-axis-green/80 to-axis-green hover:from-royal-blue hover:to-axis-green text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-axis-green/30 hover:shadow-xl hover:shadow-axis-green/40 hover:scale-[1.02]">
                     Check Eligibility & Reserve Stock
                     <ArrowRight className="w-5 h-5" />
                   </button>
@@ -82,7 +91,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            custom={3}
+            custom={4}
             className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-white text-sm"
           >
             <span className="flex items-center gap-2">
@@ -95,7 +104,7 @@ export default function Hero() {
             </span>
             <span className="flex items-center gap-2">
               <Package className="w-4 h-4 text-amber-400" />
-              TSA Approved
+              TSA Compliant Kit
             </span>
             <span className="flex items-center gap-2">
               <FileText className="w-4 h-4 text-violet-400" />
@@ -104,19 +113,23 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Floating product visual - placeholder for vial/cooler image */}
+        {/* Product Image */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden lg:block flex-1 max-w-md"
+          className="hidden lg:block flex-1 max-w-lg"
         >
           <div className="relative">
             <div
-              className="aspect-square rounded-axis-lg bg-royal-blue/20 border border-royal-blue/40 flex items-center justify-center"
+              className="rounded-2xl overflow-hidden"
               style={{ boxShadow: '0 0 60px rgba(44, 81, 163, 0.3)' }}
             >
-              <Package className="w-32 h-32 text-royal-blue/60" />
+              <img
+                src="/images/hero-product-kit.png"
+                alt="AXIS RX Premium GLP-1 Kit"
+                className="w-full h-auto"
+              />
             </div>
             <div
               className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-royal-blue/30 blur-2xl"

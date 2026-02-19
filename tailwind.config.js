@@ -9,6 +9,7 @@ export default {
         'royal-blue': '#2c51a3',
         'accent-silver': '#d4d4d4',
         'text-dark': '#11112e',
+        'axis-green': '#48D87E',
       },
       fontFamily: {
         satoshi: ['Satoshi', 'Inter', 'system-ui', 'sans-serif'],

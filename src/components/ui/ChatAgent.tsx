@@ -20,7 +20,7 @@ const quickReplies = [
 
 const knowledgeBase: Record<string, { response: string; showCTA?: boolean }> = {
   'greeting': {
-    response: "Hello! Welcome to AXIS RX. I'm here to help you learn about our premium GLP-1 therapy programs. We offer Semaglutide, Tirzepatide, and Retatrutide treatments at 70% below US pharmacy prices. What would you like to know?",
+    response: "Hello! Welcome to AXIS RX. I'm here to help you learn about our premium GLP-1 therapy programs. We offer Semaglutide, Tirzepatide, and Retatrutide treatments at 85% below US pharmacy prices. What would you like to know?",
   },
   'what is glp-1': {
     response: "GLP-1 (Glucagon-like peptide-1) therapies are FDA-approved medications that help regulate appetite, blood sugar, and promote significant weight loss. Our treatments include:\n\n• **Semaglutide** (Single Agonist) - The proven classic, same as Ozempic®\n• **Tirzepatide** (Dual Agonist) - Enhanced results, same as Mounjaro®\n• **Retatrutide** (Triple Agonist) - Our elite protocol for maximum results\n\nThese are prescribed by licensed physicians and delivered during your Mexico visit.",
@@ -149,7 +149,7 @@ export default function ChatAgent() {
       <motion.button
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ delay: 1, type: 'spring' }}
+        transition={{ delay: 10, type: 'spring' }}
         onClick={() => setIsOpen(true)}
         className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-royal-blue to-indigo-600 text-white shadow-lg shadow-royal-blue/30 hover:shadow-royal-blue/50 transition-shadow flex items-center justify-center ${isOpen ? 'hidden' : ''}`}
       >

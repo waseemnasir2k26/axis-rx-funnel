@@ -16,10 +16,10 @@ export default function SafeCrossing() {
         >
           {/* Image Side */}
           <div className="relative">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden">
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/images/thermal-voyager.png"
-                alt="FDA-compliant prescription travel pack"
+                src="/images/safe-crossing-travel.png"
+                alt="AXIS RX Travel Kit with Passport"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -53,7 +53,7 @@ export default function SafeCrossing() {
             </h2>
 
             <p className="text-navy/70 text-lg leading-relaxed mb-6">
-              We insure your treatment. While 99% of patients cross borders effortlessly with our FDA-compliant prescription pack, <span className="font-semibold text-navy">we cover the 1% who don't.</span>
+              Your treatment is 100% protected. While 99% of patients cross borders effortlessly with our FDA-compliant prescription pack, <span className="font-semibold text-navy">we cover the 1% who don't.</span>
             </p>
 
             <p className="text-navy font-semibold text-xl mb-8">
@@ -93,7 +93,7 @@ export default function SafeCrossing() {
                           THE AXIS Rx GUARANTEE:
                         </h4>
                         <p className="text-navy/70 text-sm mb-4">
-                          If US Customs (CBP) or TSA confiscates your personal supply while you are traveling with our official documentation:
+                          If US Customs (CBP) confiscates your personal supply while you are traveling with our official documentation:
                         </p>
                         <div className="space-y-3">
                           <div className="flex items-start gap-3">
@@ -139,7 +139,7 @@ export default function SafeCrossing() {
                             <div>
                               <p className="font-semibold text-navy">Don't Panic</p>
                               <p className="text-navy/70 text-sm">
-                                If an agent detains your product, simply ask for the Official Custody Receipt (CBP Form 6051S). Do not voluntarily abandon it without a receipt.
+                                If an agent detains your product, politely ask for the Official Custody Receipt (CBP Form 6051S). Never let them dispose of the medication without providing this documentation.
                               </p>
                             </div>
                           </div>

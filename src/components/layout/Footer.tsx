@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, Lock, MapPin, Mail, Instagram, ExternalLink, Sparkles, ArrowRight } from 'lucide-react';
+import { Shield, Lock, MapPin, Mail, Instagram, ExternalLink, Sparkles, ArrowRight, FileText } from 'lucide-react';
 
 export default function Footer() {
   const scrollToDisclaimer = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -33,7 +33,7 @@ export default function Footer() {
               </div>
               <Link
                 to="/checkout"
-                className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-royal-blue to-violet-500 text-white font-satoshi font-bold rounded-xl hover:shadow-lg hover:shadow-violet-500/30 transition-all"
+                className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-royal-blue via-axis-green to-axis-green text-white font-satoshi font-bold rounded-xl hover:shadow-lg hover:shadow-axis-green/30 transition-all"
               >
                 Get Started
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -64,6 +64,12 @@ export default function Footer() {
                 </div>
                 <span className="text-white font-medium">Licensed Physicians</span>
               </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-violet-400" />
+                </div>
+                <span className="text-white font-medium">Legal Prescription Included</span>
+              </div>
             </div>
           </div>
         </div>
@@ -75,9 +81,9 @@ export default function Footer() {
             <div className="md:col-span-4">
               <Link to="/" className="inline-flex items-center group">
                 <img
-                  src="/images/axisrx-logo-light.png"
+                  src="/images/axisrx-footer-logo.png"
                   alt="AXIS RX"
-                  className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                  className="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105"
                 />
               </Link>
               <p className="mt-6 text-white/60 text-sm leading-relaxed">
@@ -86,13 +92,13 @@ export default function Footer() {
               {/* Social */}
               <div className="mt-6 flex items-center gap-4">
                 <a
-                  href="https://instagram.com/axisrx"
+                  href="https://www.instagram.com/axisrxofficial/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all text-sm"
                 >
                   <Instagram className="w-4 h-4" />
-                  <span>@AXISRX</span>
+                  <span>@axisrxofficial</span>
                 </a>
               </div>
             </div>
@@ -100,14 +106,14 @@ export default function Footer() {
             {/* Corporate */}
             <div className="md:col-span-4">
               <h3 className="font-satoshi font-bold text-white mb-6 flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-royal-blue" />
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
                 Corporate
               </h3>
               <div className="space-y-4 text-sm">
                 <p className="font-bold text-white">AXIS RX LLC</p>
                 <div className="flex items-start gap-3 text-white/60 group">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-royal-blue/20 transition-colors">
-                    <MapPin className="w-4 h-4 text-royal-blue" />
+                  <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/30 transition-colors">
+                    <MapPin className="w-4 h-4 text-cyan-400" />
                   </div>
                   <div>
                     <p className="text-white/80">5718 Westheimer Rd, Suite 1000</p>
@@ -116,11 +122,11 @@ export default function Footer() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-white/60 group">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-royal-blue/20 transition-colors">
-                    <Mail className="w-4 h-4 text-royal-blue" />
+                  <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/30 transition-colors">
+                    <Mail className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <a href="mailto:admin@axisrx.com" className="text-white/80 hover:text-royal-blue transition-colors">
-                    admin@axisrx.com
+                  <a href="mailto:care@axisrx.com" className="text-white/80 hover:text-cyan-400 transition-colors">
+                    care@axisrx.com
                   </a>
                 </div>
               </div>
@@ -133,21 +139,21 @@ export default function Footer() {
                 Medical Operations
               </h3>
               <div className="space-y-4 text-sm">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-colors">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-colors">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg">🇲🇽</span>
+                    <span className="text-lg px-1.5 py-0.5 bg-cyan-500/20 rounded">🇲🇽</span>
                     <p className="font-bold text-white">Cancún / Riviera Maya</p>
                   </div>
                   <p className="text-white/60">Mobile Concierge Service</p>
-                  <p className="text-emerald-400 text-xs mt-1">Hotel Zone / AirBnB Delivery</p>
+                  <p className="text-cyan-400 text-xs mt-1">Hotel Zone / AirBnB Delivery</p>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-colors">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-colors">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg">🇲🇽</span>
+                    <span className="text-lg px-1.5 py-0.5 bg-cyan-500/20 rounded">🇲🇽</span>
                     <p className="font-bold text-white">Tijuana</p>
                   </div>
                   <p className="text-white/60">Private Medical Suite</p>
-                  <p className="text-emerald-400 text-xs mt-1">Zona Río Location</p>
+                  <p className="text-cyan-400 text-xs mt-1">Zona Río Location</p>
                 </div>
               </div>
             </div>

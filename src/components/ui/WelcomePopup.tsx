@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const benefits = [
   {
     icon: DollarSign,
-    title: 'Save 70%',
+    title: 'Save 85%',
     desc: 'Compared to US pharmacy prices',
     color: 'text-emerald-400',
     bg: 'bg-emerald-500/20',
@@ -42,10 +42,10 @@ export default function WelcomePopup() {
     const hasSeenPopup = localStorage.getItem('axisrx_welcome_seen');
     if (hasSeenPopup) return;
 
-    // Show popup after 5 seconds delay
+    // Show popup after 10 seconds delay
     const timer = setTimeout(() => {
       showPopup();
-    }, 5000);
+    }, 10000);
 
     // Exit intent detection (mouse leaving viewport at top)
     const handleMouseLeave = (e: MouseEvent) => {
@@ -178,9 +178,9 @@ export default function WelcomePopup() {
                     <Link
                       to="/checkout"
                       onClick={handleClose}
-                      className="group relative w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-royal-blue to-violet-500 text-white font-satoshi font-bold text-lg rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-violet-500/30"
+                      className="group relative w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-royal-blue to-axis-green text-white font-satoshi font-bold text-lg rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-axis-green/30"
                     >
-                      <span className="absolute inset-0 bg-gradient-to-r from-violet-500 to-royal-blue opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="absolute inset-0 bg-gradient-to-r from-axis-green to-royal-blue opacity-0 group-hover:opacity-100 transition-opacity" />
                       <span className="relative flex items-center gap-3">
                         Start Your Journey — $99 Deposit
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -189,7 +189,7 @@ export default function WelcomePopup() {
 
                     {/* Pricing clarification */}
                     <p className="text-white text-sm font-medium">
-                      <span className="text-emerald-400">$99 today</span>
+                      <span className="text-axis-green">$99 today</span>
                       <span className="text-white/50"> → </span>
                       <span className="text-white/80">$400 later for Semaglutide</span>
                     </p>
