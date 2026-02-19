@@ -276,7 +276,7 @@ export default function LandingPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.1 }}
-                  className="h-14 md:h-16 lg:h-20 w-auto object-contain mb-6"
+                  className="h-10 md:h-12 lg:h-14 w-auto object-contain mb-4"
                 />
 
                 <motion.div
