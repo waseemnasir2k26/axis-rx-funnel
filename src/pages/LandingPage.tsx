@@ -291,6 +291,16 @@ export default function LandingPage() {
                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8 }}
               >
+                {/* Hero Logo */}
+                <motion.img
+                  src="/images/axisrx-hero-logo.png"
+                  alt="AXIS RX"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.1 }}
+                  className="h-14 md:h-16 lg:h-20 w-auto object-contain mb-6"
+                />
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
