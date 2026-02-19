@@ -1158,19 +1158,20 @@ export default function LandingPage() {
         <SafeCrossing />
 
         {/* Testimonials */}
-        <section className="py-24 relative overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src="/images/comparison-bg.png"
-              alt=""
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-off-white/95" />
-          </div>
+        <section className="py-24 relative overflow-hidden bg-navy">
+          {/* Subtle gradient overlay - same as hero */}
+          <div
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(ellipse 80% 50% at 70% 50%, rgba(44, 81, 163, 0.25) 0%, transparent 50%)',
+            }}
+          />
+          {/* Subtle pattern background - same as hero */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2760%27 height=%2760%27 viewBox=%270 0 60 60%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cg fill=%27none%27 fill-rule=%27evenodd%27%3E%3Cg fill=%27%23ffffff%27 fill-opacity=%270.03%27%3E%3Cpath d=%27M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%27/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50 pointer-events-none" />
           {/* Background decorative elements */}
-          <div className="absolute top-20 right-10 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-10 w-64 h-64 bg-royal-blue/10 rounded-full blur-3xl" />
+          <div className="absolute top-20 right-10 w-64 h-64 bg-amber-400/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-64 h-64 bg-royal-blue/30 rounded-full blur-3xl" />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
             <motion.div
@@ -1191,10 +1192,10 @@ export default function LandingPage() {
                   <Star key={j} className="w-6 h-6 fill-amber-400 text-amber-400" />
                 ))}
               </motion.div>
-              <h2 className="font-satoshi font-bold text-3xl md:text-5xl">
+              <h2 className="font-satoshi font-bold text-3xl md:text-5xl text-off-white">
                 Client Experiences
               </h2>
-              <p className="mt-4 text-navy/60 text-lg">
+              <p className="mt-4 text-off-white/60 text-lg">
                 Real results from verified patients
               </p>
             </motion.div>
@@ -1208,22 +1209,22 @@ export default function LandingPage() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15, duration: 0.5, ease: "easeOut" }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                  className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300"
                 >
                   <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <h4 className="font-satoshi font-bold text-lg text-navy mb-3">"{t.title}"</h4>
-                  <p className="text-navy/60 text-sm leading-relaxed mb-6">"{t.quote}"</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <h4 className="font-satoshi font-bold text-lg text-off-white mb-3">"{t.title}"</h4>
+                  <p className="text-off-white/70 text-sm leading-relaxed mb-6">"{t.quote}"</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
                     <div>
-                      <p className="font-medium text-navy">{t.name}</p>
-                      <p className="text-navy/40 text-sm">{t.location}</p>
+                      <p className="font-medium text-off-white">{t.name}</p>
+                      <p className="text-off-white/50 text-sm">{t.location}</p>
                     </div>
                     {t.verified && (
-                      <div className="flex items-center gap-1 text-green-600 text-xs">
+                      <div className="flex items-center gap-1 text-axis-green text-xs">
                         <Check className="w-3 h-3" />
                         <span>Verified Patient</span>
                       </div>
