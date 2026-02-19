@@ -230,9 +230,14 @@ function AnimatedCounter({ value, inView }: { value: string; inView: boolean }) 
   }, [inView, value]);
 
   return (
-    <span className={`transition-all duration-500 ${isComplete ? 'scale-110' : 'scale-100'}`}>
+    <motion.span
+      className="inline-block"
+      initial={{ opacity: 0, scale: 0.5, y: 20 }}
+      animate={inView ? { opacity: 1, scale: isComplete ? 1.05 : 1, y: 0 } : {}}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
+    >
       {displayValue}
-    </span>
+    </motion.span>
   );
 }
 
@@ -241,7 +246,7 @@ export default function LandingPage() {
   const isHeroInView = useInView(heroRef, { once: true });
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const statsRef = useRef(null);
-  const isStatsInView = useInView(statsRef, { once: true });
+  const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
   const location = useLocation();
 
   // Handle hash navigation on page load
@@ -402,7 +407,7 @@ export default function LandingPage() {
         </section>
 
         {/* Social Proof Ticker */}
-        <section ref={statsRef} className="py-20 bg-gradient-to-b from-navy via-[#0a0a18] to-navy border-y border-white/5 overflow-hidden">
+        <section ref={statsRef} className="relative py-20 bg-gradient-to-b from-navy via-[#0a0a18] to-navy border-y border-white/5 overflow-hidden">
           {/* Background effects */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-royal-blue/10 rounded-full blur-[120px] animate-pulse" />
