@@ -127,32 +127,30 @@ const faqs = [
   },
 ];
 
-// Easing function for smooth animation
-function easeOutExpo(t: number): number {
-  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+// Easing function for very smooth, slow animation
+function easeOutCubic(t: number): number {
+  return 1 - Math.pow(1 - t, 3);
 }
 
-// Animated counter component with smooth easing
+// Animated counter component - slow counting from 0
 function AnimatedCounter({ value, inView }: { value: string; inView: boolean }) {
   const [displayValue, setDisplayValue] = useState('0');
-  const [isComplete, setIsComplete] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated) return;
 
-    const duration = 2500; // Slower, more dramatic
+    setHasAnimated(true);
+    const duration = 4000; // 4 seconds - very slow
     const startTime = Date.now();
-    setIsComplete(false);
 
     // Parse the value to determine animation type
     if (value === '15-20%') {
-      const target = 20;
-
       const animate = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeOutExpo(progress);
-        const current = Math.floor(easedProgress * target);
+        const easedProgress = easeOutCubic(progress);
+        const current = Math.floor(easedProgress * 20);
 
         if (progress < 1) {
           if (current < 15) {
@@ -163,78 +161,53 @@ function AnimatedCounter({ value, inView }: { value: string; inView: boolean }) 
           requestAnimationFrame(animate);
         } else {
           setDisplayValue('15-20%');
-          setIsComplete(true);
         }
       };
       requestAnimationFrame(animate);
     } else if (value === '100%') {
-      const target = 100;
-
       const animate = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeOutExpo(progress);
-        const current = Math.floor(easedProgress * target);
+        const easedProgress = easeOutCubic(progress);
+        const current = Math.floor(easedProgress * 100);
 
         if (progress < 1) {
           setDisplayValue(`${current}%`);
           requestAnimationFrame(animate);
         } else {
           setDisplayValue('100%');
-          setIsComplete(true);
         }
       };
       requestAnimationFrame(animate);
     } else if (value === '0') {
-      // Dramatic countdown from random high number
-      const fakeStart = 47;
-      const fakeDuration = 1800;
-
-      const animate = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / fakeDuration, 1);
-        const easedProgress = easeOutExpo(progress);
-        const current = Math.floor(fakeStart * (1 - easedProgress));
-
-        if (progress < 1) {
-          setDisplayValue(`${current}`);
-          requestAnimationFrame(animate);
-        } else {
-          setDisplayValue('0');
-          setIsComplete(true);
-        }
-      };
-      requestAnimationFrame(animate);
+      // For 0, we show 0 immediately with a nice fade
+      setDisplayValue('0');
     } else if (value === '4.9/5') {
-      const target = 4.9;
-
       const animate = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeOutExpo(progress);
-        const current = easedProgress * target;
+        const easedProgress = easeOutCubic(progress);
+        const current = easedProgress * 4.9;
 
         if (progress < 1) {
           setDisplayValue(`${current.toFixed(1)}/5`);
           requestAnimationFrame(animate);
         } else {
           setDisplayValue('4.9/5');
-          setIsComplete(true);
         }
       };
       requestAnimationFrame(animate);
     } else {
       setDisplayValue(value);
-      setIsComplete(true);
     }
-  }, [inView, value]);
+  }, [inView, value, hasAnimated]);
 
   return (
     <motion.span
       className="inline-block"
-      initial={{ opacity: 0, scale: 0.5, y: 20 }}
-      animate={inView ? { opacity: 1, scale: isComplete ? 1.05 : 1, y: 0 } : {}}
-      transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
     >
       {displayValue}
     </motion.span>
