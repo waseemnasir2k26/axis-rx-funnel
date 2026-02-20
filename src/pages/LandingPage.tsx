@@ -29,8 +29,6 @@ import {
 } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import WelcomePopup from '@/components/ui/WelcomePopup';
-import ChatAgent from '@/components/ui/ChatAgent';
 import SafeCrossing from '@/components/sections/SafeCrossing';
 import { useRef, useState, useEffect } from 'react';
 
@@ -245,8 +243,6 @@ export default function LandingPage() {
 
   return (
     <>
-      <WelcomePopup />
-      <ChatAgent />
       <Header />
       <main className="bg-navy text-off-white">
         {/* Hero Section */}
@@ -360,9 +356,9 @@ export default function LandingPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="hidden lg:block relative"
+                className="relative mt-8 lg:mt-0"
               >
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-sm mx-auto lg:max-w-none">
                   <img
                     src="/images/hero-product-kit.png"
                     alt="AXIS RX Premium GLP-1 Kit"
@@ -370,9 +366,9 @@ export default function LandingPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
                 </div>
-                <div className="absolute -bottom-4 -right-4 bg-royal-blue/90 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg">
-                  <p className="text-white/70 text-sm">Complete Protocol</p>
-                  <p className="text-white font-satoshi font-bold text-2xl">$499</p>
+                <div className="absolute -bottom-4 right-4 lg:-right-4 bg-royal-blue/90 backdrop-blur-sm rounded-2xl px-4 py-3 lg:px-6 lg:py-4 shadow-lg">
+                  <p className="text-white/70 text-xs lg:text-sm">Complete Protocol</p>
+                  <p className="text-white font-satoshi font-bold text-xl lg:text-2xl">$499</p>
                 </div>
               </motion.div>
             </div>
@@ -736,14 +732,11 @@ export default function LandingPage() {
         {/* Medical Partner Standard Section */}
         <section className="py-24 relative overflow-hidden">
           {/* Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src="/images/comparison-bg.png"
-              alt=""
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-navy/90" />
-          </div>
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/images/comparison-bg.png')" }}
+          />
+          <div className="absolute inset-0 bg-navy/90" />
 
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -944,18 +937,17 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="relative pt-4"
+                className="p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 border-2 border-amber-500/50 relative overflow-hidden"
               >
-                {/* Upscale badge - positioned outside the card */}
-                <div className="absolute -top-0 left-1/2 -translate-x-1/2 z-20 px-4 py-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white text-xs font-bold rounded-full flex items-center gap-1.5 shadow-lg shadow-amber-500/30 whitespace-nowrap">
+                {/* Upscale badge */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-4 py-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white text-xs font-bold rounded-full flex items-center gap-1.5 shadow-lg shadow-amber-500/30 whitespace-nowrap">
                   <Sparkles className="w-3 h-3" />
                   THE VISIONARY
                 </div>
 
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 border-2 border-amber-500/50 relative overflow-hidden">
-                  {/* Premium glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent" />
-                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-amber-500/20 rounded-full blur-3xl" />
+                {/* Premium glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent" />
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-amber-500/20 rounded-full blur-3xl" />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">
@@ -994,7 +986,6 @@ export default function LandingPage() {
                     Apply for Retatrutide
                     <ArrowRight className="w-4 h-4" />
                   </Link>
-                </div>
                 </div>
               </motion.div>
             </div>
