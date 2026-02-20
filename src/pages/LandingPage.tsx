@@ -393,13 +393,13 @@ export default function LandingPage() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15, duration: 0.6, type: 'spring' }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="relative group"
+                  className="relative group h-full"
                 >
                   {/* Card glow effect */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-royal-blue via-violet-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-50 blur transition-all duration-500" />
 
                   {/* Card */}
-                  <div className="relative p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-center hover:border-royal-blue/50 transition-all duration-300">
+                  <div className="relative h-full p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-center hover:border-royal-blue/50 transition-all duration-300 flex flex-col justify-center">
                     {/* Icon */}
                     <div className="mx-auto mb-4 w-12 h-12 rounded-xl bg-gradient-to-br from-royal-blue/20 to-violet-500/20 border border-white/10 flex items-center justify-center">
                       {stat.icon === 'scale' && <Scale className="w-6 h-6 text-emerald-400" />}
@@ -734,7 +734,7 @@ export default function LandingPage() {
           {/* Background Image */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/images/comparison-bg.png')" }}
+            style={{ backgroundImage: "url('/images/doctor-patient.png')" }}
           />
           <div className="absolute inset-0 bg-navy/90" />
 
@@ -1001,9 +1001,9 @@ export default function LandingPage() {
           {/* Background Image */}
           <div className="absolute inset-0">
             <img
-              src="/images/hero-product-kit.png"
+              src="/images/thermal-voyager.png"
               alt=""
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover opacity-15"
             />
             <div className="absolute inset-0 bg-[#0a0a14]/95" />
           </div>
