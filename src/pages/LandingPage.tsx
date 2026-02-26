@@ -265,93 +265,13 @@ export default function LandingPage() {
             }}
           />
 
-          {/* MOBILE HERO - Centered Coming 2026 Design */}
-          <div className="relative z-10 w-full max-w-3xl mx-auto px-6 py-24 flex flex-col items-center text-center lg:hidden">
-            {/* Coming Soon Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="mb-10"
-            >
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span className="text-white/90 text-sm font-medium tracking-widest uppercase">
-                  Coming 2026
-                </span>
-              </span>
-            </motion.div>
-
-            {/* Logo */}
-            <motion.img
-              src="/images/axisrx-hero-logo.png"
-              alt="AXIS RX"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.15, duration: 0.6 }}
-              className="h-28 sm:h-36 w-auto object-contain mb-12"
-            />
-
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="font-satoshi font-bold text-4xl sm:text-5xl text-white leading-tight mb-8"
-            >
-              The Future of{' '}
-              <span className="text-cyan-400">Metabolic Precision</span>
-              {' '}is Arriving.
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.45, duration: 0.6 }}
-              className="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed mb-12"
-            >
-              Axis Rx is fine-tuning an exclusive medical concierge experience. From our corporate
-              headquarters in Houston to our mobile units in Cancún and Tijuana, we are redefining
-              weight loss and longevity through high-science and premium care.
-            </motion.p>
-
-            {/* Waitlist Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="w-full max-w-md"
-            >
-              <p className="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-4">
-                Join the Private Waitlist for Priority Access
-              </p>
-
-              <form className="flex flex-col gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                  className="flex-1 px-5 py-4 rounded-xl bg-white text-navy placeholder-gray-400 text-base focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-4 bg-royal-blue hover:bg-royal-blue/90 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap"
-                >
-                  Request Access
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </form>
-            </motion.div>
-          </div>
-
-          {/* DESKTOP HERO - Original Premium GLP-1 Design */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40 hidden lg:block">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-40">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8 }}
+                className="text-center lg:text-left"
               >
                 {/* Hero Logo */}
                 <motion.img
@@ -360,7 +280,7 @@ export default function LandingPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.1 }}
-                  className="h-10 md:h-12 lg:h-14 w-auto object-contain mb-4"
+                  className="h-12 md:h-14 lg:h-14 w-auto object-contain mb-4 mx-auto lg:mx-0"
                 />
 
                 <motion.div
@@ -377,7 +297,7 @@ export default function LandingPage() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  className="font-satoshi font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight"
+                  className="font-satoshi font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight"
                 >
                   <span className="text-off-white">Premium GLP-1 Therapies.</span>
                   <br />
@@ -388,7 +308,7 @@ export default function LandingPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.5, duration: 0.8 }}
-                  className="mt-6 text-lg md:text-xl text-off-white/60 max-w-xl leading-relaxed"
+                  className="mt-6 text-base sm:text-lg md:text-xl text-off-white/60 max-w-xl mx-auto lg:mx-0 leading-relaxed"
                 >
                   Access the exact same active ingredients (Semaglutide & Tirzepatide) used in Ozempic® and Mounjaro®—without the insurance battles or monthly subscription fees. Delivered directly to your hotel or villa in Cancún or Tijuana.
                 </motion.p>
@@ -397,11 +317,11 @@ export default function LandingPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.7, duration: 0.8 }}
-                  className="mt-8 flex flex-col items-start gap-3"
+                  className="mt-8 flex flex-col items-center lg:items-start gap-3"
                 >
                   <Link
                     to="/checkout"
-                    className="group relative px-10 py-4 bg-gradient-to-r from-royal-blue to-axis-green text-white font-satoshi font-bold text-lg rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-axis-green/30"
+                    className="group relative px-8 sm:px-10 py-4 bg-gradient-to-r from-royal-blue to-axis-green text-white font-satoshi font-bold text-base sm:text-lg rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-axis-green/30"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-2 whitespace-nowrap">
                       Check Eligibility & Reserve Stock
@@ -418,7 +338,7 @@ export default function LandingPage() {
                   initial={{ opacity: 0 }}
                   animate={isHeroInView ? { opacity: 1 } : {}}
                   transition={{ delay: 0.9 }}
-                  className="mt-10 flex flex-wrap items-center gap-6 text-off-white/40 text-sm"
+                  className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-off-white/40 text-xs sm:text-sm"
                 >
                   <div className="flex items-center gap-2">
                     <Shield className="w-4 h-4" />
@@ -439,12 +359,12 @@ export default function LandingPage() {
                 </motion.div>
               </motion.div>
 
-              {/* Hero Image - Product Shot */}
+              {/* Hero Image - Product Shot (Desktop only) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="relative"
+                className="relative hidden lg:block"
               >
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                   <img
