@@ -17,8 +17,6 @@ import {
   ChevronDown,
   MapPin,
   Clock,
-  Award,
-  Lock,
   BadgeCheck,
   Languages,
   HeartPulse,
