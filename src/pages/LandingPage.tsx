@@ -246,132 +246,93 @@ export default function LandingPage() {
       <Header />
       <main className="bg-navy text-off-white">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 pointer-events-none">
-            <img
-              src="/images/concierge-arrival.png"
-              alt="AXIS RX Concierge Service"
-              className="w-full h-full object-cover opacity-40"
+        <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          {/* Subtle gradient overlay */}
+          <div
+            className="absolute inset-0 opacity-40 pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(44, 81, 163, 0.3) 0%, transparent 60%)',
+            }}
+          />
+
+          <div className="relative z-10 w-full max-w-3xl mx-auto px-6 py-24 flex flex-col items-center text-center">
+            {/* Coming Soon Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="mb-10"
+            >
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="text-white/90 text-sm font-medium tracking-widest uppercase">
+                  Coming 2026
+                </span>
+              </span>
+            </motion.div>
+
+            {/* Logo */}
+            <motion.img
+              src="/images/axisrx-hero-logo.png"
+              alt="AXIS RX"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.15, duration: 0.6 }}
+              className="h-28 sm:h-36 md:h-44 w-auto object-contain mb-12"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/95 to-navy/70" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/50" />
-          </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8 }}
-              >
-                {/* Hero Logo */}
-                <motion.img
-                  src="/images/axisrx-hero-logo.png"
-                  alt="AXIS RX"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.1 }}
-                  className="h-10 md:h-12 lg:h-14 w-auto object-contain mb-4"
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="font-satoshi font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight mb-8"
+            >
+              The Future of{' '}
+              <span className="text-cyan-400">Metabolic Precision</span>
+              {' '}is Arriving.
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.45, duration: 0.6 }}
+              className="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed mb-12"
+            >
+              Axis Rx is fine-tuning an exclusive medical concierge experience. From our corporate
+              headquarters in Houston to our mobile units in Cancún and Tijuana, we are redefining
+              weight loss and longevity through high-science and premium care.
+            </motion.p>
+
+            {/* Waitlist Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="w-full max-w-md"
+            >
+              <p className="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-4">
+                Join the Private Waitlist for Priority Access
+              </p>
+
+              <form className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                  className="flex-1 px-5 py-4 rounded-xl bg-white text-navy placeholder-gray-400 text-base focus:outline-none focus:ring-2 focus:ring-cyan-400"
                 />
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6"
+                <button
+                  type="submit"
+                  className="px-6 py-4 bg-royal-blue hover:bg-royal-blue/90 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap"
                 >
-                  <Sparkles className="w-4 h-4 text-royal-blue" />
-                  <span className="text-off-white/70 text-sm">Global Access to GLP-1 Therapies</span>
-                </motion.div>
-
-                <motion.h1
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  className="font-satoshi font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight"
-                >
-                  <span className="text-off-white">Premium GLP-1 Therapies.</span>
-                  <br />
-                  <span className="text-royal-blue">85% Below US Pharmacy Prices.</span>
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="mt-6 text-lg md:text-xl text-off-white/60 max-w-xl leading-relaxed"
-                >
-                  Access the exact same active ingredients (Semaglutide & Tirzepatide) used in Ozempic® and Mounjaro®—without the insurance battles or monthly subscription fees. Delivered directly to your hotel or villa in Cancún or Tijuana.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.7, duration: 0.8 }}
-                  className="mt-8 flex flex-col items-start gap-3"
-                >
-                  <Link
-                    to="/checkout"
-                    className="group relative px-10 py-4 bg-gradient-to-r from-royal-blue to-axis-green text-white font-satoshi font-bold text-lg rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-axis-green/30"
-                  >
-                    <span className="relative z-10 flex items-center justify-center gap-2 whitespace-nowrap">
-                      Check Eligibility & Reserve Stock
-                      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </Link>
-                  <p className="text-off-white/40 text-sm whitespace-nowrap">
-                    Starts at <span className="text-axis-green font-semibold">$499</span> for complete 3-month protocol
-                  </p>
-                </motion.div>
-
-                {/* Trust badges */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={isHeroInView ? { opacity: 1 } : {}}
-                  transition={{ delay: 0.9 }}
-                  className="mt-10 flex flex-wrap items-center gap-6 text-off-white/40 text-sm"
-                >
-                  <div className="flex items-center gap-2">
-                    <Lock className="w-4 h-4" />
-                    <span>256-Bit Encrypted</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Award className="w-4 h-4" />
-                    <span>Licensed Physicians</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Plane className="w-4 h-4" />
-                    <span>TSA Compliant Kit</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4" />
-                    <span>Prescription Included</span>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Hero Image - Product Shot */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="relative mt-8 lg:mt-0"
-              >
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-sm mx-auto lg:max-w-none">
-                  <img
-                    src="/images/hero-product-kit.png"
-                    alt="AXIS RX Premium GLP-1 Kit"
-                    className="w-full h-auto"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
-                </div>
-                <div className="absolute -bottom-4 right-4 lg:-right-4 bg-royal-blue/90 backdrop-blur-sm rounded-2xl px-4 py-3 lg:px-6 lg:py-4 shadow-lg">
-                  <p className="text-white/70 text-xs lg:text-sm">Complete Protocol</p>
-                  <p className="text-white font-satoshi font-bold text-xl lg:text-2xl">$499</p>
-                </div>
-              </motion.div>
-            </div>
+                  Request Access
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </form>
+            </motion.div>
           </div>
         </section>
 
