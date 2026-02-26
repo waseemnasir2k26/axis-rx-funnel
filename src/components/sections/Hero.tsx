@@ -13,19 +13,19 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-navy overflow-hidden">
+    <section className="relative min-h-screen flex items-center bg-navy overflow-hidden">
       {/* Subtle gradient overlay */}
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(44, 81, 163, 0.25) 0%, transparent 50%)',
+            'radial-gradient(ellipse 80% 50% at 70% 50%, rgba(44, 81, 163, 0.25) 0%, transparent 50%)',
         }}
       />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50 pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col items-center">
-        <div className="w-full text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex-1 text-center lg:text-left">
           <motion.img
             src="/images/axisrx-hero-logo.png"
             alt="AXIS RX"
@@ -33,7 +33,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={0}
-            className="h-16 md:h-20 lg:h-24 w-auto object-contain mb-6 mx-auto"
+            className="h-24 sm:h-28 md:h-32 lg:h-36 w-auto object-contain mb-6 mx-auto lg:mx-0"
           />
           <motion.div
             variants={fadeUp}
@@ -62,18 +62,40 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={2}
-            className="mt-6 text-base sm:text-lg md:text-xl text-off-white/90 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-base sm:text-lg md:text-xl text-off-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
           >
             Access the exact same active ingredients (Semaglutide & Tirzepatide) used in
             Ozempic® and Mounjaro®—without the insurance battles or monthly subscription
             fees. Delivered directly to your hotel or villa in Cancún/Tijuana.
           </motion.p>
+
+          {/* Product Image - Mobile Only */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="block lg:hidden mt-8 mb-4"
+          >
+            <div className="relative max-w-sm mx-auto">
+              <div
+                className="rounded-2xl overflow-hidden"
+                style={{ boxShadow: '0 0 40px rgba(44, 81, 163, 0.3)' }}
+              >
+                <img
+                  src="/images/hero-product-kit.png"
+                  alt="AXIS RX Premium GLP-1 Kit"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </motion.div>
+
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={3}
-            className="mt-10 flex flex-col items-center gap-6"
+            className="mt-10 flex flex-col items-center lg:items-start gap-6"
           >
             <Link to="/checkout">
               <button className="bg-gradient-to-r from-royal-blue via-axis-green/80 to-axis-green hover:from-royal-blue hover:to-axis-green text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-axis-green/30 hover:shadow-xl hover:shadow-axis-green/40 hover:scale-[1.02]">
@@ -91,7 +113,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={4}
-            className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-white text-xs sm:text-sm"
+            className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-white text-xs sm:text-sm"
           >
             <span className="flex items-center gap-2">
               <Lock className="w-4 h-4 text-emerald-400" />
@@ -111,6 +133,31 @@ export default function Hero() {
             </span>
           </motion.div>
         </div>
+
+        {/* Product Image - Desktop Only */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="hidden lg:block flex-1 max-w-lg"
+        >
+          <div className="relative">
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{ boxShadow: '0 0 60px rgba(44, 81, 163, 0.3)' }}
+            >
+              <img
+                src="/images/hero-product-kit.png"
+                alt="AXIS RX Premium GLP-1 Kit"
+                className="w-full h-auto"
+              />
+            </div>
+            <div
+              className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-royal-blue/30 blur-2xl"
+              aria-hidden
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
