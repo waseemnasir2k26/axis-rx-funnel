@@ -1,117 +1,120 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, CheckCircle, FileText, ArrowRight, Sparkles, Package } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1 },
+    transition: { duration: 0.6, delay: i * 0.15 },
   }),
 };
 
 export default function Hero() {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle email submission
+    console.log('Email submitted:', email);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-navy overflow-hidden">
       {/* Subtle gradient overlay */}
       <div
-        className="absolute inset-0 opacity-30 pointer-events-none"
+        className="absolute inset-0 opacity-40 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(44, 81, 163, 0.25) 0%, transparent 50%)',
+            'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(44, 81, 163, 0.3) 0%, transparent 60%)',
         }}
       />
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50 pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col items-center">
-        <div className="w-full text-center">
-          <motion.img
-            src="/images/axisrx-hero-logo.png"
-            alt="AXIS RX"
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            className="h-16 md:h-20 lg:h-24 w-auto object-contain mb-6 mx-auto"
-          />
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={1}
-            className="font-satoshi font-bold text-hero text-off-white leading-tight"
-            style={{ letterSpacing: '-1px' }}
-          >
-            Premium GLP-1 Therapies. 85% Below US Pharmacy Prices.
-          </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={2}
-            className="mt-6 text-lg md:text-xl text-off-white/90 max-w-2xl mx-auto leading-relaxed"
-          >
-            Access the exact same active ingredients (Semaglutide & Tirzepatide) used in
-            Ozempic® and Mounjaro®—without the insurance battles or monthly subscription
-            fees. Delivered directly to your hotel or villa in Cancún/Tijuana.
-          </motion.p>
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={3}
-            className="mt-10 flex flex-col items-center gap-6"
-          >
-            {/* Premium CTA Card */}
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-cyan-500 to-violet-500 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition duration-300" />
-              <div className="relative bg-navy/90 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8">
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="w-4 h-4 text-amber-400" />
-                  <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Complete 3-Month Protocol</span>
-                </div>
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-5xl sm:text-6xl font-bold text-white">$499</span>
-                  <span className="text-xl text-white/40 line-through">$1,500</span>
-                  <span className="bg-emerald-500/20 text-emerald-400 text-sm font-bold px-2 py-1 rounded-full">Save 85%</span>
-                </div>
-                <p className="text-white/70 text-sm mb-6">Everything included: medication, Rx, supplies & delivery</p>
-                <Link to="/checkout">
-                  <button className="w-full bg-gradient-to-r from-royal-blue via-axis-green/80 to-axis-green hover:from-royal-blue hover:to-axis-green text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-axis-green/30 hover:shadow-xl hover:shadow-axis-green/40 hover:scale-[1.02]">
-                    Check Eligibility & Reserve Stock
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-6 py-24 flex flex-col items-center text-center">
+        {/* Coming Soon Badge */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
+          className="mb-10"
+        >
+          <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-white/90 text-sm font-medium tracking-widest uppercase">
+              Coming 2026
+            </span>
+          </span>
+        </motion.div>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={4}
-            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-white text-sm"
-          >
-            <span className="flex items-center gap-2">
-              <Lock className="w-4 h-4 text-emerald-400" />
-              256-Bit Encrypted
-            </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-cyan-400" />
-              Licensed Physicians
-            </span>
-            <span className="flex items-center gap-2">
-              <Package className="w-4 h-4 text-amber-400" />
-              TSA Compliant Kit
-            </span>
-            <span className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-violet-400" />
-              Official Rx Included
-            </span>
-          </motion.div>
-        </div>
+        {/* Logo */}
+        <motion.img
+          src="/images/axisrx-hero-logo.png"
+          alt="AXIS RX"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={1}
+          className="h-28 sm:h-36 md:h-44 w-auto object-contain mb-12"
+        />
+
+        {/* Headline */}
+        <motion.h1
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={2}
+          className="font-satoshi font-bold text-4xl sm:text-5xl md:text-6xl text-white leading-tight mb-8"
+        >
+          The Future of{' '}
+          <span className="text-cyan-400">Metabolic Precision</span>
+          {' '}is Arriving.
+        </motion.h1>
+
+        {/* Description */}
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={3}
+          className="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed mb-12"
+        >
+          Axis Rx is fine-tuning an exclusive medical concierge experience. From our corporate
+          headquarters in Houston to our mobile units in Cancún and Tijuana, we are redefining
+          weight loss and longevity through high-science and premium care.
+        </motion.p>
+
+        {/* Waitlist Section */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={4}
+          className="w-full max-w-md"
+        >
+          <p className="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-4">
+            Join the Private Waitlist for Priority Access
+          </p>
+
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+              className="flex-1 px-5 py-4 rounded-xl bg-white text-navy placeholder-gray-400 text-base focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            />
+            <button
+              type="submit"
+              className="px-6 py-4 bg-royal-blue hover:bg-royal-blue/90 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 whitespace-nowrap"
+            >
+              Request Access
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </form>
+        </motion.div>
       </div>
     </section>
   );
